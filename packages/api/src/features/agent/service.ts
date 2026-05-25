@@ -944,13 +944,32 @@ export const agentService = {
 		delete: async (input: { id: string; userId: string }) => {
 			assertAgentEnvironment();
 
-			await getThread({ id: input.id, userId: input.userId });
+			const thread = await getThread({ id: input.id, userId: input.userId });
+			const activeRunId = thread.activeRunId;
+			const activeStreamId = thread.activeStreamId;
 
-			await db.delete(schema.agentAttachment).where(eq(schema.agentAttachment.threadId, input.id));
-			await db
-				.update(schema.agentThread)
-				.set({ status: "deleted", deletedAt: new Date() })
-				.where(and(eq(schema.agentThread.id, input.id), eq(schema.agentThread.userId, input.userId)));
+			if (activeRunId) {
+				activeRunControllers.get(activeRunId)?.abort("USER_DELETED");
+				activeRunControllers.delete(activeRunId);
+				try {
+					await clearActiveAgentRunIfCurrent({
+						threadId: input.id,
+						userId: input.userId,
+						runId: activeRunId,
+						streamId: activeStreamId,
+					});
+				} catch (error) {
+					console.error("[agent] Failed to clear active run during delete", error);
+				}
+			}
+
+			await db.transaction(async (tx) => {
+				await tx.delete(schema.agentAttachment).where(eq(schema.agentAttachment.threadId, input.id));
+				await tx
+					.update(schema.agentThread)
+					.set({ status: "deleted", deletedAt: new Date() })
+					.where(and(eq(schema.agentThread.id, input.id), eq(schema.agentThread.userId, input.userId)));
+			});
 
 			try {
 				await getStorageService().delete(`uploads/${input.userId}/agent/${input.id}`);

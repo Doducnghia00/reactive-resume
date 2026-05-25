@@ -1194,10 +1194,51 @@ describe("agentService.threads.delete", () => {
 
 		await agentService.threads.delete({ id: "thread-own", userId: "user-own" });
 
+		expect(dbMock.transaction).toHaveBeenCalled();
 		expect(dbMock.delete).toHaveBeenCalledBefore(storageServiceMock.delete as never);
 		expect(updateSet).toHaveBeenCalledBefore(storageServiceMock.delete as never);
 		expect(storageServiceMock.delete).toHaveBeenCalledWith("uploads/user-own/agent/thread-own");
 		expect(dbMock.delete).toHaveBeenCalled();
+		expect(updateSet).toHaveBeenCalledWith(expect.objectContaining({ status: "deleted" }));
+	});
+
+	it("clears active-run state before deleting an active thread", async () => {
+		const ownedThread = buildArchivedThread({
+			id: "thread-own",
+			userId: "user-own",
+			status: "active",
+			activeRunId: "run-1",
+			activeStreamId: "stream-1",
+			archivedAt: null,
+		});
+
+		dbMock.select.mockImplementation(() => {
+			const limit = vi.fn(async () => [ownedThread]);
+			const where = vi.fn(() => ({ limit }));
+			const from = vi.fn(() => ({ where }));
+			return { from };
+		});
+
+		const deleteWhere = vi.fn(async () => undefined);
+		dbMock.delete.mockReturnValue({ where: deleteWhere });
+
+		const updateWhere = vi.fn(async () => undefined);
+		const updateSet = vi.fn(() => ({ where: updateWhere }));
+		dbMock.update.mockReturnValue({ set: updateSet });
+		clearActiveAgentRunIfCurrentMock.mockResolvedValue(undefined);
+		storageServiceMock.delete.mockResolvedValue(undefined);
+
+		const { agentService } = await import("./service");
+
+		await agentService.threads.delete({ id: "thread-own", userId: "user-own" });
+
+		expect(clearActiveAgentRunIfCurrentMock).toHaveBeenCalledWith({
+			threadId: "thread-own",
+			userId: "user-own",
+			runId: "run-1",
+			streamId: "stream-1",
+		});
+		expect(clearActiveAgentRunIfCurrentMock).toHaveBeenCalledBefore(updateSet as never);
 		expect(updateSet).toHaveBeenCalledWith(expect.objectContaining({ status: "deleted" }));
 	});
 
@@ -1231,6 +1272,32 @@ describe("agentService.threads.delete", () => {
 
 		await expect(agentService.threads.delete({ id: "thread-own", userId: "user-own" })).resolves.toBeUndefined();
 		expect(updateSet).toHaveBeenCalledWith(expect.objectContaining({ status: "deleted" }));
+	});
+
+	it("does not delete storage when transactional soft-delete fails", async () => {
+		const ownedThread = buildArchivedThread({
+			id: "thread-own",
+			userId: "user-own",
+			status: "active",
+			activeRunId: null,
+			activeStreamId: null,
+			archivedAt: null,
+		});
+
+		dbMock.select.mockImplementation(() => {
+			const limit = vi.fn(async () => [ownedThread]);
+			const where = vi.fn(() => ({ limit }));
+			const from = vi.fn(() => ({ where }));
+			return { from };
+		});
+		dbMock.transaction.mockRejectedValue(new Error("transaction failed"));
+
+		const { agentService } = await import("./service");
+
+		await expect(agentService.threads.delete({ id: "thread-own", userId: "user-own" })).rejects.toThrow(
+			"transaction failed",
+		);
+		expect(storageServiceMock.delete).not.toHaveBeenCalled();
 	});
 });
 
