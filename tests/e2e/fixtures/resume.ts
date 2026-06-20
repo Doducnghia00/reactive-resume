@@ -23,7 +23,7 @@ export async function createSampleResumeFromDashboard(page: Page, testInfo: Test
 	return resumeName;
 }
 
-export async function openSidebarSection(page: Page, title: string) {
+export async function openSidebarSection(page: Page, title: string, side: "left" | "right" = "left") {
 	await page.getByTitle(title, { exact: true }).click();
-	await expect(page.getByRole("heading", { name: title })).toBeVisible();
+	await expect(page.getByTestId(side).getByRole("heading", { name: title })).toBeVisible();
 }
