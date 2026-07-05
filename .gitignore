@@ -67,3 +67,4 @@ ds-bundle/
 packages/ui/.ds-compiled.css
 packages/ui/.ds-tw-raw.css
 packages/ui/dist/
+i18n.cache

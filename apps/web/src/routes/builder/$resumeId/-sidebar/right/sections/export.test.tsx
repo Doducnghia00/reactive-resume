@@ -68,7 +68,7 @@ const renderExport = () =>
 
 const openDialog = () => {
 	const trigger = screen.getByText(
-		"Choose PDF, DOCX, or JSON. Export your resume and cover letter separately when available.",
+		"Choose PDF, DOCX, Markdown, or JSON. Export your resume and cover letter separately when available.",
 	);
 	fireEvent.click(trigger.closest("button") as HTMLButtonElement);
 };
