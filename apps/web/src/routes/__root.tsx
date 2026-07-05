@@ -9,9 +9,12 @@ import { DirectionProvider } from "@base-ui/react/direction-provider";
 import { i18n } from "@lingui/core";
 import { I18nProvider } from "@lingui/react";
 import { IconContext } from "@phosphor-icons/react";
+import { TanStackDevtools } from "@tanstack/react-devtools";
 import { HotkeysProvider } from "@tanstack/react-hotkeys";
 import { QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtoolsPanel } from "@tanstack/react-query-devtools";
 import { createRootRouteWithContext, HeadContent, Outlet, useRouterState } from "@tanstack/react-router";
+import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { domAnimation, LazyMotion, MotionConfig } from "motion/react";
 import { useEffect, useMemo } from "react";
 import { Toaster } from "@reactive-resume/ui/components/sonner";
@@ -135,6 +138,21 @@ function RootComponent() {
 														<Toaster richColors position="bottom-center" />
 
 														{import.meta.env.DEV && <BreakpointIndicator />}
+														{import.meta.env.DEV && (
+															<TanStackDevtools
+																config={{ position: "bottom-left" }}
+																plugins={[
+																	{
+																		name: "TanStack Query",
+																		render: <ReactQueryDevtoolsPanel />,
+																	},
+																	{
+																		name: "TanStack Router",
+																		render: <TanStackRouterDevtoolsPanel />,
+																	},
+																]}
+															/>
+														)}
 													</PromptDialogProvider>
 												</ConfirmDialogProvider>
 											</TooltipProvider>

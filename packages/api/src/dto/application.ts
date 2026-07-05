@@ -1,0 +1,147 @@
+import { createSelectSchema } from "drizzle-zod";
+import z from "zod";
+import * as schema from "@reactive-resume/db/schema";
+import {
+	activityEventSchema,
+	aiMetadataSchema,
+	applicationStatusSchema,
+	contactSchema,
+} from "@reactive-resume/schema/applications/data";
+
+const applicationSchema = createSelectSchema(schema.application, {
+	id: z.string().describe("The ID of the application."),
+	company: z.string().trim().min(1).describe("The company applied to."),
+	role: z.string().trim().min(1).describe("The role / job title."),
+	location: z.string().trim().nullable(),
+	salary: z.string().trim().nullable(),
+	status: applicationStatusSchema.describe("The current pipeline stage."),
+	archived: z.boolean(),
+	resumeId: z.string().nullable().describe("The linked Reactive Resume, if any."),
+	source: z.string().trim().nullable(),
+	sourceUrl: z.string().trim().nullable(),
+	jobDescription: z.string().nullable(),
+	matchScore: z.number().int().min(0).max(100).nullable(),
+	aiMetadata: aiMetadataSchema.nullable(),
+	campaign: z.string().trim().nullable(),
+	notes: z.string().nullable(),
+	followUpAt: z.date().nullable(),
+	followUpNote: z.string().trim().nullable(),
+	tags: z.array(z.string()),
+	contacts: z.array(contactSchema),
+	activity: z.array(activityEventSchema),
+	appliedAt: z.date(),
+	createdAt: z.date(),
+	updatedAt: z.date(),
+});
+
+// Fields a client is allowed to set/change. `status`, `activity` and AI-owned fields are
+// excluded here — status changes go through the auto-logging update path, activity through
+// addNote, and AI fields are written only by the (reserved) AI procedures.
+const editableSchema = applicationSchema.pick({
+	company: true,
+	role: true,
+	location: true,
+	salary: true,
+	source: true,
+	sourceUrl: true,
+	jobDescription: true,
+	campaign: true,
+	notes: true,
+	followUpAt: true,
+	followUpNote: true,
+	contacts: true,
+	resumeId: true,
+	tags: true,
+});
+
+const createInputSchema = editableSchema.partial().extend({
+	company: applicationSchema.shape.company,
+	role: applicationSchema.shape.role,
+	status: applicationStatusSchema.optional(),
+});
+
+export const applicationDto = {
+	list: {
+		input: z
+			.object({
+				status: applicationStatusSchema.optional(),
+				campaign: z.string().optional(),
+				tags: z.array(z.string()).optional(),
+				includeArchived: z.boolean().optional().default(false),
+			})
+			.optional()
+			.default({ includeArchived: false }),
+		output: z.array(applicationSchema.omit({ userId: true })),
+	},
+
+	getById: {
+		input: applicationSchema.pick({ id: true }),
+		output: applicationSchema.omit({ userId: true }),
+	},
+
+	create: {
+		input: createInputSchema,
+		output: z.string().describe("The ID of the created application."),
+	},
+
+	// Bulk create from a CSV import. Each item is a create input; company/role required per item.
+	import: {
+		input: z.object({ items: z.array(createInputSchema).min(1).max(500) }),
+		output: z.object({ imported: z.number() }),
+	},
+
+	update: {
+		input: editableSchema
+			.partial()
+			.extend({ id: z.string(), status: applicationStatusSchema.optional(), archived: z.boolean().optional() }),
+		output: applicationSchema.omit({ userId: true }),
+	},
+
+	addNote: {
+		input: z.object({ id: z.string(), text: z.string().trim().min(1) }),
+		output: applicationSchema.omit({ userId: true }),
+	},
+
+	delete: {
+		input: applicationSchema.pick({ id: true }),
+		output: z.void(),
+	},
+
+	// Table bulk actions: move stage, archive/unarchive, add tags across a selection.
+	bulkUpdate: {
+		input: z.object({
+			ids: z.array(z.string()).min(1),
+			status: applicationStatusSchema.optional(),
+			archived: z.boolean().optional(),
+			addTags: z.array(z.string()).optional(),
+		}),
+		output: z.object({ updated: z.number() }),
+	},
+
+	bulkDelete: {
+		input: z.object({ ids: z.array(z.string()).min(1) }),
+		output: z.object({ deleted: z.number() }),
+	},
+
+	// Aggregates for the Insights view. Everything else (funnel, sankey, tiles) is derived
+	// client-side from these raw counts via computeInsights().
+	stats: {
+		input: z.object({ campaign: z.string().optional() }).optional(),
+		output: z.object({
+			total: z.number(),
+			byStage: z.array(z.object({ status: applicationStatusSchema, count: z.number() })),
+			bySource: z.array(z.object({ source: z.string(), count: z.number() })),
+		}),
+	},
+
+	// Distinct campaign names for the sidebar/filter (Phase 2 uses the same shape).
+	campaigns: {
+		input: z.void(),
+		output: z.array(z.object({ name: z.string(), count: z.number() })),
+	},
+
+	tags: {
+		input: z.void(),
+		output: z.array(z.string()),
+	},
+};

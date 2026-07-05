@@ -30,6 +30,7 @@ import { Route as AgentThreadIdRouteImport } from "./routes/agent/$threadId";
 import { Route as UsernameSlugRouteImport } from "./routes/$username/$slug";
 import { Route as BuilderResumeIdRouteRouteImport } from "./routes/builder/$resumeId/route";
 import { Route as DashboardResumesIndexRouteImport } from "./routes/dashboard/resumes/index";
+import { Route as DashboardApplicationsIndexRouteImport } from "./routes/dashboard/applications/index";
 import { Route as BuilderResumeIdIndexRouteImport } from "./routes/builder/$resumeId/index";
 import { Route as DashboardSettingsProfileRouteImport } from "./routes/dashboard/settings/profile";
 import { Route as DashboardSettingsPreferencesRouteImport } from "./routes/dashboard/settings/preferences";
@@ -143,6 +144,12 @@ const DashboardResumesIndexRoute = DashboardResumesIndexRouteImport.update({
   path: "/resumes/",
   getParentRoute: () => DashboardRouteRoute,
 } as any);
+const DashboardApplicationsIndexRoute =
+  DashboardApplicationsIndexRouteImport.update({
+    id: "/applications/",
+    path: "/applications/",
+    getParentRoute: () => DashboardRouteRoute,
+  } as any);
 const BuilderResumeIdIndexRoute = BuilderResumeIdIndexRouteImport.update({
   id: "/",
   path: "/",
@@ -218,6 +225,7 @@ export interface FileRoutesByFullPath {
   "/dashboard/settings/preferences": typeof DashboardSettingsPreferencesRoute;
   "/dashboard/settings/profile": typeof DashboardSettingsProfileRoute;
   "/builder/$resumeId/": typeof BuilderResumeIdIndexRoute;
+  "/dashboard/applications/": typeof DashboardApplicationsIndexRoute;
   "/dashboard/resumes/": typeof DashboardResumesIndexRoute;
   "/dashboard/settings/authentication/": typeof DashboardSettingsAuthenticationIndexRoute;
 }
@@ -244,6 +252,7 @@ export interface FileRoutesByTo {
   "/dashboard/settings/preferences": typeof DashboardSettingsPreferencesRoute;
   "/dashboard/settings/profile": typeof DashboardSettingsProfileRoute;
   "/builder/$resumeId": typeof BuilderResumeIdIndexRoute;
+  "/dashboard/applications": typeof DashboardApplicationsIndexRoute;
   "/dashboard/resumes": typeof DashboardResumesIndexRoute;
   "/dashboard/settings/authentication": typeof DashboardSettingsAuthenticationIndexRoute;
 }
@@ -276,6 +285,7 @@ export interface FileRoutesById {
   "/dashboard/settings/preferences": typeof DashboardSettingsPreferencesRoute;
   "/dashboard/settings/profile": typeof DashboardSettingsProfileRoute;
   "/builder/$resumeId/": typeof BuilderResumeIdIndexRoute;
+  "/dashboard/applications/": typeof DashboardApplicationsIndexRoute;
   "/dashboard/resumes/": typeof DashboardResumesIndexRoute;
   "/dashboard/settings/authentication/": typeof DashboardSettingsAuthenticationIndexRoute;
 }
@@ -308,6 +318,7 @@ export interface FileRouteTypes {
     | "/dashboard/settings/preferences"
     | "/dashboard/settings/profile"
     | "/builder/$resumeId/"
+    | "/dashboard/applications/"
     | "/dashboard/resumes/"
     | "/dashboard/settings/authentication/";
   fileRoutesByTo: FileRoutesByTo;
@@ -334,6 +345,7 @@ export interface FileRouteTypes {
     | "/dashboard/settings/preferences"
     | "/dashboard/settings/profile"
     | "/builder/$resumeId"
+    | "/dashboard/applications"
     | "/dashboard/resumes"
     | "/dashboard/settings/authentication";
   id:
@@ -365,6 +377,7 @@ export interface FileRouteTypes {
     | "/dashboard/settings/preferences"
     | "/dashboard/settings/profile"
     | "/builder/$resumeId/"
+    | "/dashboard/applications/"
     | "/dashboard/resumes/"
     | "/dashboard/settings/authentication/";
   fileRoutesById: FileRoutesById;
@@ -528,6 +541,13 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof DashboardResumesIndexRouteImport;
       parentRoute: typeof DashboardRouteRoute;
     };
+    "/dashboard/applications/": {
+      id: "/dashboard/applications/";
+      path: "/applications";
+      fullPath: "/dashboard/applications/";
+      preLoaderRoute: typeof DashboardApplicationsIndexRouteImport;
+      parentRoute: typeof DashboardRouteRoute;
+    };
     "/builder/$resumeId/": {
       id: "/builder/$resumeId/";
       path: "/";
@@ -649,6 +669,7 @@ interface DashboardRouteRouteChildren {
   DashboardSettingsJobSearchRoute: typeof DashboardSettingsJobSearchRoute;
   DashboardSettingsPreferencesRoute: typeof DashboardSettingsPreferencesRoute;
   DashboardSettingsProfileRoute: typeof DashboardSettingsProfileRoute;
+  DashboardApplicationsIndexRoute: typeof DashboardApplicationsIndexRoute;
   DashboardResumesIndexRoute: typeof DashboardResumesIndexRoute;
   DashboardSettingsAuthenticationIndexRoute: typeof DashboardSettingsAuthenticationIndexRoute;
 }
@@ -662,6 +683,7 @@ const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
   DashboardSettingsJobSearchRoute: DashboardSettingsJobSearchRoute,
   DashboardSettingsPreferencesRoute: DashboardSettingsPreferencesRoute,
   DashboardSettingsProfileRoute: DashboardSettingsProfileRoute,
+  DashboardApplicationsIndexRoute: DashboardApplicationsIndexRoute,
   DashboardResumesIndexRoute: DashboardResumesIndexRoute,
   DashboardSettingsAuthenticationIndexRoute:
     DashboardSettingsAuthenticationIndexRoute,

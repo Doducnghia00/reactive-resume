@@ -4,6 +4,7 @@
 	"type": "module",
 	"private": true,
 	"exports": {
+		"./applications/*": "./src/applications/*.ts",
 		"./icons": "./src/icons.ts",
 		"./resume/*": "./src/resume/*.ts",
 		"./schema.json": "./schema.json",
@@ -21,7 +22,7 @@
 	},
 	"devDependencies": {
 		"@reactive-resume/config": "workspace:*",
-		"@typescript/native-preview": "7.0.0-dev.20260704.1",
+		"@typescript/native-preview": "7.0.0-dev.20260705.1",
 		"typescript": "^6.0.3"
 	}
 }
