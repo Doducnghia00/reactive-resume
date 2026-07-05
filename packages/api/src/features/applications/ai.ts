@@ -1,3 +1,8 @@
+import type { IncomingHttpHeaders, IncomingMessage } from "node:http";
+import { lookup } from "node:dns/promises";
+import * as http from "node:http";
+import * as https from "node:https";
+import { isIP } from "node:net";
 import { ORPCError } from "@orpc/client";
 import { generateText } from "ai";
 import z from "zod";
@@ -10,6 +15,10 @@ import { resumeService } from "../resume/service";
 import { applicationService } from "./service";
 
 const reserved = { tags: ["Applications", "AI"] } as const;
+const MAX_JOB_POSTING_BYTES = 200_000;
+const MAX_PASTED_JOB_DESCRIPTION_CHARS = 20_000;
+const JOB_POSTING_CONTENT_TYPES = ["text/html", "text/plain", "application/xhtml+xml", "application/xml", "text/xml"];
+type ValidatedAddress = { address: string; family: 4 | 6 };
 
 // Resolve the user's default (tested + enabled) AI provider into a ready model instance.
 async function resolveModel(userId: string) {
@@ -46,8 +55,40 @@ async function generatePlainText(model: Awaited<ReturnType<typeof resolveModel>>
 	return text.trim();
 }
 
-// Best-effort fetch + strip of a job posting page. http(s) only, size/time capped.
-async function fetchJobPostingText(url: string): Promise<string> {
+function isPrivateIPv4(address: string) {
+	const parts = address.split(".").map((part) => Number(part));
+	if (parts.length !== 4 || parts.some((part) => !Number.isInteger(part) || part < 0 || part > 255)) return true;
+	const [a = 0, b = 0] = parts;
+	return (
+		a === 0 ||
+		a === 10 ||
+		a === 127 ||
+		(a === 100 && b >= 64 && b <= 127) ||
+		(a === 169 && b === 254) ||
+		(a === 172 && b >= 16 && b <= 31) ||
+		(a === 192 && b === 168) ||
+		a >= 224
+	);
+}
+
+function isPrivateAddress(address: string) {
+	if (address.startsWith("::ffff:")) return isPrivateIPv4(address.slice(7));
+	if (isIP(address) === 4) return isPrivateIPv4(address);
+
+	const normalized = address.toLowerCase();
+	return (
+		normalized === "::1" ||
+		normalized === "::" ||
+		normalized.startsWith("fc") ||
+		normalized.startsWith("fd") ||
+		normalized.startsWith("fe8") ||
+		normalized.startsWith("fe9") ||
+		normalized.startsWith("fea") ||
+		normalized.startsWith("feb")
+	);
+}
+
+async function assertPublicHttpUrl(url: string): Promise<{ parsed: URL; address: ValidatedAddress }> {
 	let parsed: URL;
 	try {
 		parsed = new URL(url);
@@ -57,23 +98,96 @@ async function fetchJobPostingText(url: string): Promise<string> {
 	if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
 		throw new ORPCError("BAD_REQUEST", { message: "Only http(s) job posting URLs are supported." });
 	}
+	if (parsed.hostname.toLowerCase() === "localhost") {
+		throw new ORPCError("BAD_REQUEST", { message: "Local job posting URLs are not supported." });
+	}
 
+	const addresses = isIP(parsed.hostname)
+		? [{ address: parsed.hostname, family: isIP(parsed.hostname) as 4 | 6 }]
+		: ((await lookup(parsed.hostname, { all: true, verbatim: true })) as ValidatedAddress[]);
+	if (addresses.length === 0 || addresses.some(({ address }) => isPrivateAddress(address))) {
+		throw new ORPCError("BAD_REQUEST", { message: "Private or local job posting URLs are not supported." });
+	}
+
+	const [address] = addresses;
+	if (!address) throw new ORPCError("BAD_REQUEST", { message: "The job posting URL could not be resolved." });
+	return { parsed, address };
+}
+
+function headerValue(headers: IncomingHttpHeaders, name: string) {
+	const value = headers[name];
+	return Array.isArray(value) ? value[0] : value;
+}
+
+async function readTextResponse(response: IncomingMessage) {
+	const contentType = headerValue(response.headers, "content-type")?.split(";")[0]?.trim().toLowerCase();
+	if (contentType && !JOB_POSTING_CONTENT_TYPES.includes(contentType)) {
+		throw new ORPCError("BAD_REQUEST", { message: "The job posting URL did not return a text page." });
+	}
+
+	const contentLength = Number(headerValue(response.headers, "content-length"));
+	if (Number.isFinite(contentLength) && contentLength > MAX_JOB_POSTING_BYTES) {
+		throw new ORPCError("BAD_REQUEST", {
+			message: "The job posting page is too large. Paste the description instead.",
+		});
+	}
+
+	const chunks: Uint8Array[] = [];
+	let total = 0;
+
+	for await (const value of response) {
+		const chunk = typeof value === "string" ? Buffer.from(value) : value;
+		total += chunk.byteLength;
+		if (total > MAX_JOB_POSTING_BYTES) {
+			response.destroy();
+			throw new ORPCError("BAD_REQUEST", {
+				message: "The job posting page is too large. Paste the description instead.",
+			});
+		}
+		chunks.push(chunk);
+	}
+
+	return new TextDecoder().decode(Buffer.concat(chunks));
+}
+
+function requestJobPosting(parsed: URL, address: ValidatedAddress, signal: AbortSignal) {
+	return new Promise<IncomingMessage>((resolve, reject) => {
+		const client = parsed.protocol === "https:" ? https : http;
+		const request = client.request(
+			parsed,
+			{
+				signal,
+				headers: {
+					"user-agent":
+						"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+					accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+					"accept-language": "en-US,en;q=0.9",
+				},
+				lookup: (_hostname, _options, callback) => callback(null, address.address, address.family),
+			},
+			resolve,
+		);
+		request.on("error", reject);
+		request.end();
+	});
+}
+
+// Best-effort fetch + strip of a job posting page. http(s) only, size/time capped.
+export async function fetchJobPostingText(url: string): Promise<string> {
 	const controller = new AbortController();
 	const timeout = setTimeout(() => controller.abort(), 10_000);
 	try {
-		// Job boards 403 obvious bot user-agents, so present as a normal browser.
-		const response = await fetch(url, {
-			signal: controller.signal,
-			headers: {
-				"user-agent":
-					"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
-				accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-				"accept-language": "en-US,en;q=0.9",
-			},
-		});
-		if (!response.ok)
-			throw new ORPCError("BAD_REQUEST", { message: `Couldn't fetch the posting (HTTP ${response.status}).` });
-		const html = (await response.text()).slice(0, 200_000);
+		const { parsed, address } = await assertPublicHttpUrl(url);
+		const response = await requestJobPosting(parsed, address, controller.signal);
+		if (response.statusCode && response.statusCode >= 300 && response.statusCode < 400) {
+			throw new ORPCError("BAD_REQUEST", { message: "Redirecting job posting URLs are not supported." });
+		}
+		if (!response.statusCode || response.statusCode < 200 || response.statusCode >= 300) {
+			throw new ORPCError("BAD_REQUEST", {
+				message: `Couldn't fetch the posting (HTTP ${response.statusCode ?? "unknown"}).`,
+			});
+		}
+		const html = await readTextResponse(response);
 		return html
 			.replace(/<script[\s\S]*?<\/script>/gi, " ")
 			.replace(/<style[\s\S]*?<\/style>/gi, " ")
@@ -97,6 +211,11 @@ const autofillOutput = z.object({
 	jobDescription: z.string(),
 });
 
+export const autofillInputSchema = z.object({
+	sourceUrl: z.string().optional(),
+	jobDescription: z.string().max(MAX_PASTED_JOB_DESCRIPTION_CHARS).optional(),
+});
+
 // Tolerant of LLM variance: clamp the score, cap the lists by slicing rather than rejecting.
 const matchScoreOutput = z.object({
 	score: z.coerce
@@ -117,7 +236,7 @@ export const aiRouter = {
 	// Extract structured fields from a pasted job description or a posting URL.
 	autofill: protectedProcedure
 		.route({ method: "POST", path: "/applications/ai/autofill", operationId: "aiAutofillApplication", ...reserved })
-		.input(z.object({ sourceUrl: z.string().optional(), jobDescription: z.string().optional() }))
+		.input(autofillInputSchema)
 		.use(aiRequestRateLimit)
 		.output(autofillOutput)
 		.handler(async ({ context, input }) => {

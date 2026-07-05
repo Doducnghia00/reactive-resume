@@ -5,6 +5,8 @@ import { db } from "@reactive-resume/db/client";
 import * as schema from "@reactive-resume/db/schema";
 import { STAGES } from "@reactive-resume/schema/applications/data";
 import { generateId } from "@reactive-resume/utils/string";
+import { resumeService } from "../resume/service";
+import { getStorageService } from "../storage/service";
 
 const stageLabel = (status: ApplicationStatus) => STAGES.find((s) => s.value === status)?.label ?? status;
 
@@ -46,6 +48,51 @@ async function requireOwned(id: string, userId: string) {
 	return row;
 }
 
+async function assertOwnedResume(userId: string, resumeId: string | null | undefined) {
+	if (!resumeId) return;
+	await resumeService.getById({ id: resumeId, userId });
+}
+
+async function assertOwnedResumes(userId: string, resumeIds: (string | null | undefined)[]) {
+	const uniqueResumeIds = [...new Set(resumeIds.filter((id): id is string => !!id))];
+	await Promise.all(uniqueResumeIds.map((resumeId) => assertOwnedResume(userId, resumeId)));
+}
+
+function storageKeyFromApplicationUrl(userId: string, value: string | null | undefined) {
+	if (!value) return null;
+
+	let pathname: string;
+	try {
+		pathname = value.startsWith("/") ? value : new URL(value).pathname;
+	} catch {
+		return null;
+	}
+
+	const match = pathname.match(/^\/(?:api\/)?uploads\/(.+)$/);
+	if (!match?.[1]) return null;
+
+	const key = `uploads/${match[1]}`;
+	return key.startsWith(`uploads/${userId}/`) ? key : null;
+}
+
+async function deleteApplicationAttachments(
+	userId: string,
+	applications: { resumeFileUrl?: string | null; coverLetterUrl?: string | null }[],
+) {
+	const keys = [
+		...new Set(
+			applications.flatMap((application) => [
+				storageKeyFromApplicationUrl(userId, application.resumeFileUrl),
+				storageKeyFromApplicationUrl(userId, application.coverLetterUrl),
+			]),
+		),
+	].filter((key): key is string => !!key);
+
+	if (keys.length === 0) return;
+	const storageService = getStorageService();
+	await Promise.allSettled(keys.map((key) => storageService.delete(key)));
+}
+
 const stripUserId = <T extends { userId: string }>(row: T) => {
 	const { userId: _userId, ...rest } = row;
 	return rest;
@@ -78,6 +125,8 @@ export const applicationService = {
 		const { userId, status, ...fields } = input;
 		const id = generateId();
 
+		await assertOwnedResume(userId, fields.resumeId);
+
 		await db.insert(schema.application).values({
 			id,
 			userId,
@@ -94,6 +143,11 @@ export const applicationService = {
 		items: (EditableFields & { company: string; role: string; status?: ApplicationStatus | undefined })[];
 	}) => {
 		if (input.items.length === 0) return { imported: 0 };
+
+		await assertOwnedResumes(
+			input.userId,
+			input.items.map((item) => item.resumeId),
+		);
 
 		const values = input.items.map(({ status, ...fields }) => ({
 			id: generateId(),
@@ -115,15 +169,18 @@ export const applicationService = {
 			archived?: boolean | undefined;
 		},
 	) => {
-		const existing = await requireOwned(input.id, input.userId);
+		await requireOwned(input.id, input.userId);
 
 		const { id, userId, status, archived, ...fields } = input;
+		await assertOwnedResume(userId, fields.resumeId);
 
-		// Auto-log a timeline event when the stage actually changes.
-		const activity =
-			status && status !== existing.status
-				? [...existing.activity, activityEvent("stage", `Moved to ${stageLabel(status)}`)]
-				: existing.activity;
+		// Append in SQL so concurrent notes/stage events are not overwritten by a stale array.
+		const activityExpr =
+			status !== undefined
+				? sql`case when ${schema.application.status} <> ${status}
+							then ${schema.application.activity} || ${JSON.stringify([activityEvent("stage", `Moved to ${stageLabel(status)}`)])}::jsonb
+							else ${schema.application.activity} end`
+				: undefined;
 
 		const [updated] = await db
 			.update(schema.application)
@@ -131,7 +188,7 @@ export const applicationService = {
 				...fields,
 				...(status !== undefined ? { status } : {}),
 				...(archived !== undefined ? { archived } : {}),
-				activity,
+				...(activityExpr ? { activity: activityExpr } : {}),
 			})
 			.where(and(eq(schema.application.id, id), eq(schema.application.userId, userId)))
 			.returning();
@@ -176,11 +233,13 @@ export const applicationService = {
 	},
 
 	delete: async (input: { id: string; userId: string }) => {
+		const existing = await requireOwned(input.id, input.userId);
 		const result = await db
 			.delete(schema.application)
 			.where(and(eq(schema.application.id, input.id), eq(schema.application.userId, input.userId)))
 			.returning({ id: schema.application.id });
 		if (result.length === 0) throw new ORPCError("NOT_FOUND");
+		await deleteApplicationAttachments(input.userId, [existing]);
 	},
 
 	bulkUpdate: async (input: {
@@ -227,10 +286,18 @@ export const applicationService = {
 	},
 
 	bulkDelete: async (input: { userId: string; ids: string[] }) => {
+		const existing = await db
+			.select()
+			.from(schema.application)
+			.where(and(inArray(schema.application.id, input.ids), eq(schema.application.userId, input.userId)));
 		const rows = await db
 			.delete(schema.application)
 			.where(and(inArray(schema.application.id, input.ids), eq(schema.application.userId, input.userId)))
 			.returning({ id: schema.application.id });
+		await deleteApplicationAttachments(
+			input.userId,
+			existing.filter((application) => rows.some((row) => row.id === application.id)),
+		);
 		return { deleted: rows.length };
 	},
 

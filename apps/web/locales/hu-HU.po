@@ -27,7 +27,8 @@ msgstr ""
 msgid "\"{0} · {1}\" and its full timeline will be permanently deleted. This can't be undone."
 msgstr "\"{0} · {1}\" és a teljes idővonala véglegesen törlődik. Ez nem vonható vissza."
 
-#: src/routes/_home/-sections/footer.tsx src/routes/_home/-sections/hero.tsx
+#: src/routes/_home/-sections/footer.tsx
+#: src/routes/_home/-sections/hero.tsx
 msgid "(opens in new tab)"
 msgstr "(új lapon nyílik meg)"
 
@@ -608,7 +609,8 @@ msgctxt "(noun) person, organization, or entity that gives an award"
 msgid "Awarder"
 msgstr "Díjazó"
 
-#: src/dialogs/resume/sections/custom.tsx src/libs/resume/section-title.ts
+#: src/dialogs/resume/sections/custom.tsx
+#: src/libs/resume/section-title.ts
 #: src/libs/resume/section.tsx
 msgid "Awards"
 msgstr "Díjak"
@@ -705,7 +707,8 @@ msgid "Bullet List"
 msgstr "Felsorolásjelezett lista"
 
 #. Tagline shown in app footer/about area
-#: src/components/ui/copyright.tsx src/routes/_home/-sections/features.tsx
+#: src/components/ui/copyright.tsx
+#: src/routes/_home/-sections/features.tsx
 #: src/routes/_home/-sections/prefooter.tsx
 msgid "By the community, for the community."
 msgstr "A közösség által, a közösségért."
@@ -729,7 +732,8 @@ msgstr "Exportálhatom az önéletrajzomat PDF‑be?"
 #: src/features/applications/components/import-applications-sheet.tsx
 #: src/features/settings/pages/api-keys.tsx
 #: src/features/settings/pages/danger-zone.tsx
-#: src/features/settings/pages/profile.tsx src/hooks/use-prompt.tsx
+#: src/features/settings/pages/profile.tsx
+#: src/hooks/use-prompt.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/sections/custom.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/shared/section-item.tsx
@@ -750,7 +754,8 @@ msgstr "katalán"
 msgid "Center Align"
 msgstr "Középre igazítás"
 
-#: src/dialogs/resume/sections/custom.tsx src/libs/resume/section-title.ts
+#: src/dialogs/resume/sections/custom.tsx
+#: src/libs/resume/section-title.ts
 #: src/libs/resume/section.tsx
 msgid "Certifications"
 msgstr "Tanúsítványok"
@@ -775,7 +780,8 @@ msgstr "Meggondoltad magad? Nevezd át az önéletrajzodat valami beszédesebbre
 msgid "Changelog"
 msgstr "Változásnapló"
 
-#: src/routes/agent/-components/agent-chat.tsx src/routes/agent/$threadId.tsx
+#: src/routes/agent/-components/agent-chat.tsx
+#: src/routes/agent/$threadId.tsx
 msgid "Chat"
 msgstr "Csevegés"
 
@@ -887,7 +893,8 @@ msgstr "Teljesen ingyenes, örökké, rejtett költségek nélkül."
 
 #. Account deletion confirmation dialog confirm action in danger zone
 #. Create API key dialog acknowledgment action after copying
-#: src/dialogs/api-key/create.tsx src/features/settings/pages/danger-zone.tsx
+#: src/dialogs/api-key/create.tsx
+#: src/features/settings/pages/danger-zone.tsx
 #: src/hooks/use-prompt.tsx
 #: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
 msgid "Confirm"
@@ -922,7 +929,8 @@ msgstr "Tartalom"
 #. Button label to continue to dashboard after successful registration
 #. Final action button after saving backup codes
 #. Primary action button to proceed to next step in two-factor setup
-#: src/dialogs/auth/enable-two-factor.tsx src/features/auth/pages/register.tsx
+#: src/dialogs/auth/enable-two-factor.tsx
+#: src/features/auth/pages/register.tsx
 msgid "Continue"
 msgstr "Tovább"
 
@@ -1039,7 +1047,8 @@ msgstr "Motivációs levél"
 
 #. Fallback title for a custom cover letter item in resume builder when recipient is empty
 #. Fallback title for a custom cover letter item in resume builder when recipient is unavailable
-#: src/dialogs/resume/sections/custom.tsx src/libs/resume/section-title.ts
+#: src/dialogs/resume/sections/custom.tsx
+#: src/libs/resume/section-title.ts
 #: src/libs/resume/section.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/sections/custom.tsx
 msgid "Cover Letter"
@@ -1050,7 +1059,8 @@ msgid "Cover letter draft"
 msgstr "Motivációslevél-vázlat"
 
 #. Create API key dialog submit action
-#: src/dialogs/api-key/create.tsx src/dialogs/resume/index.tsx
+#: src/dialogs/api-key/create.tsx
+#: src/dialogs/resume/index.tsx
 #: src/dialogs/resume/sections/award.tsx
 #: src/dialogs/resume/sections/certification.tsx
 #: src/dialogs/resume/sections/cover-letter.tsx
@@ -1078,7 +1088,8 @@ msgstr "Másolat készítése ehhez az álláshoz igazítva"
 msgid "Create a new account"
 msgstr "Új fiók létrehozása"
 
-#: src/dialogs/api-key/create.tsx src/features/settings/pages/api-keys.tsx
+#: src/dialogs/api-key/create.tsx
+#: src/features/settings/pages/api-keys.tsx
 msgid "Create a new API key"
 msgstr "Új API kulcs létrehozása"
 
@@ -1130,7 +1141,8 @@ msgstr "Új publikáció létrehozása"
 msgid "Create a new reference"
 msgstr "Új referencia létrehozása"
 
-#: src/dialogs/resume/index.tsx src/features/command-palette/pages/resumes.tsx
+#: src/dialogs/resume/index.tsx
+#: src/features/command-palette/pages/resumes.tsx
 #: src/routes/dashboard/resumes/-components/cards/create-card.tsx
 #: src/routes/dashboard/resumes/-components/list-view.tsx
 msgid "Create a new resume"
@@ -1231,7 +1243,8 @@ msgid "Danish"
 msgstr "dán"
 
 #. Appearance theme option for dark mode
-#: src/features/user/dropdown-menu.tsx src/libs/theme.ts
+#: src/features/user/dropdown-menu.tsx
+#: src/libs/theme.ts
 msgid "Dark"
 msgstr "Sötét"
 
@@ -1527,7 +1540,8 @@ msgstr "A szerkesztés le van tiltva, amíg fel nem oldja a zárolást."
 msgid "Editing keyword..."
 msgstr "Kulcsszó szerkesztése..."
 
-#: src/dialogs/resume/sections/custom.tsx src/libs/resume/section-title.ts
+#: src/dialogs/resume/sections/custom.tsx
+#: src/libs/resume/section-title.ts
 #: src/libs/resume/section.tsx
 msgid "Education"
 msgstr "Tanulmányok"
@@ -1540,7 +1554,8 @@ msgstr "E‑mail"
 #. Label for email input on registration form
 #. Label for login identifier input that accepts email or username
 #: src/features/auth/pages/forgot-password.tsx
-#: src/features/auth/pages/login.tsx src/features/auth/pages/register.tsx
+#: src/features/auth/pages/login.tsx
+#: src/features/auth/pages/register.tsx
 #: src/features/settings/pages/profile.tsx
 msgid "Email Address"
 msgstr "E‑mail cím"
@@ -1625,7 +1640,8 @@ msgstr "Minden, amire szükséged van professzionális önéletrajzok létrehoz�
 msgid "Exit Fullscreen"
 msgstr "Kilépés a teljes képernyőből"
 
-#: src/dialogs/resume/sections/custom.tsx src/libs/resume/section-title.ts
+#: src/dialogs/resume/sections/custom.tsx
+#: src/libs/resume/section-title.ts
 #: src/libs/resume/section.tsx
 msgid "Experience"
 msgstr "Tapasztalat"
@@ -2109,7 +2125,8 @@ msgstr "Itt különböző szakmákhoz és személyiségekhez illeszkedő önéle
 msgid "Here's your new API key"
 msgstr "Íme az új API kulcsod"
 
-#: src/components/level/combobox.tsx src/dialogs/resume/sections/language.tsx
+#: src/components/level/combobox.tsx
+#: src/dialogs/resume/sections/language.tsx
 #: src/dialogs/resume/sections/skill.tsx
 msgid "Hidden"
 msgstr "Rejtett"
@@ -2136,8 +2153,10 @@ msgstr "Hivatkozás aláhúzásának elrejtése"
 #. Accessible label for toggle button that hides the visible new password
 #. Accessible label for toggle button that hides the visible password in two-factor disable dialog
 #. Accessible label for toggle button that hides the visible password in two-factor setup
-#: src/dialogs/auth/change-password.tsx src/dialogs/auth/disable-two-factor.tsx
-#: src/dialogs/auth/enable-two-factor.tsx src/features/auth/pages/login.tsx
+#: src/dialogs/auth/change-password.tsx
+#: src/dialogs/auth/disable-two-factor.tsx
+#: src/dialogs/auth/enable-two-factor.tsx
+#: src/features/auth/pages/login.tsx
 #: src/features/auth/pages/register.tsx
 #: src/features/auth/pages/reset-password.tsx
 #: src/features/auth/pages/resume-password.tsx
@@ -2202,7 +2221,8 @@ msgstr "Ikon"
 msgid "Identify gaps for an applicant tracking system and apply only high-confidence keyword improvements."
 msgstr "Azonosítsa a jelentkezőkövető rendszer hiányosságait, és csak nagy megbízhatóságú kulcsszó-fejlesztéseket alkalmazzon."
 
-#: src/dialogs/resume/import.tsx src/routes/dashboard/resumes/index.tsx
+#: src/dialogs/resume/import.tsx
+#: src/routes/dashboard/resumes/index.tsx
 msgid "Import"
 msgstr "Importálás"
 
@@ -2281,7 +2301,8 @@ msgstr "Azonnali generálás"
 msgid "Integrations"
 msgstr "Integrációk"
 
-#: src/dialogs/resume/sections/custom.tsx src/libs/resume/section-title.ts
+#: src/dialogs/resume/sections/custom.tsx
+#: src/libs/resume/section-title.ts
 #: src/libs/resume/section.tsx
 msgid "Interests"
 msgstr "Érdeklődési körök"
@@ -2328,13 +2349,15 @@ msgstr "Álláskeresési folyamat"
 
 #. Example full name placeholder on profile settings form
 #. Example full name placeholder on registration form
-#: src/features/auth/pages/register.tsx src/features/settings/pages/profile.tsx
+#: src/features/auth/pages/register.tsx
+#: src/features/settings/pages/profile.tsx
 msgid "John Doe"
 msgstr "John Doe"
 
 #. Example username placeholder on profile settings form
 #. Example username placeholder on registration form
-#: src/features/auth/pages/register.tsx src/features/settings/pages/profile.tsx
+#: src/features/auth/pages/register.tsx
+#: src/features/settings/pages/profile.tsx
 msgid "john.doe"
 msgstr "John.Doe"
 
@@ -2343,7 +2366,8 @@ msgstr "John.Doe"
 #. Example email placeholder on profile settings form
 #. Example email placeholder on registration form
 #: src/features/auth/pages/forgot-password.tsx
-#: src/features/auth/pages/login.tsx src/features/auth/pages/register.tsx
+#: src/features/auth/pages/login.tsx
+#: src/features/auth/pages/register.tsx
 #: src/features/settings/pages/profile.tsx
 msgid "john.doe@example.com"
 msgstr "john.doe@example.com"
@@ -2404,7 +2428,8 @@ msgstr "Fekvő"
 msgid "Language"
 msgstr "Nyelv"
 
-#: src/dialogs/resume/sections/custom.tsx src/libs/resume/section-title.ts
+#: src/dialogs/resume/sections/custom.tsx
+#: src/libs/resume/section-title.ts
 #: src/libs/resume/section.tsx
 msgid "Languages"
 msgstr "Nyelvek"
@@ -2484,7 +2509,8 @@ msgid "Licensed under <0>MIT</0>."
 msgstr "<0>MIT</0> licenc alatt."
 
 #. Appearance theme option for light mode
-#: src/features/user/dropdown-menu.tsx src/libs/theme.ts
+#: src/features/user/dropdown-menu.tsx
+#: src/libs/theme.ts
 msgid "Light"
 msgstr "Világos"
 
@@ -2684,13 +2710,15 @@ msgid "Must start with https://"
 msgstr "A https:// címmel kell kezdeni."
 
 #. Label for full name input on registration form
-#: src/dialogs/api-key/create.tsx src/dialogs/resume/index.tsx
+#: src/dialogs/api-key/create.tsx
+#: src/dialogs/resume/index.tsx
 #: src/dialogs/resume/sections/interest.tsx
 #: src/dialogs/resume/sections/project.tsx
 #: src/dialogs/resume/sections/reference.tsx
 #: src/dialogs/resume/sections/skill.tsx
 #: src/features/applications/components/application-detail-sheet.tsx
-#: src/features/auth/pages/register.tsx src/features/settings/pages/profile.tsx
+#: src/features/auth/pages/register.tsx
+#: src/features/settings/pages/profile.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/sections/basics.tsx
 #: src/routes/dashboard/resumes/index.tsx
 msgid "Name"
@@ -2879,7 +2907,8 @@ msgstr "OpenAI-kompatibilis"
 msgid "OpenRouter"
 msgstr "OpenRouter"
 
-#: src/routes/_home/-sections/donate.tsx src/routes/_home/-sections/footer.tsx
+#: src/routes/_home/-sections/donate.tsx
+#: src/routes/_home/-sections/footer.tsx
 msgid "opens in new tab"
 msgstr "új lapon nyílik meg"
 
@@ -2960,7 +2989,8 @@ msgstr "Hozzáférési kulcsok és 2FA"
 #. Label for password input on protected resume access form
 #. Label for password input on registration form
 #: src/dialogs/auth/disable-two-factor.tsx
-#: src/dialogs/auth/enable-two-factor.tsx src/features/auth/pages/login.tsx
+#: src/dialogs/auth/enable-two-factor.tsx
+#: src/features/auth/pages/login.tsx
 #: src/features/auth/pages/register.tsx
 #: src/features/auth/pages/resume-password.tsx
 #: src/features/settings/authentication/components/hooks.tsx
@@ -3162,7 +3192,8 @@ msgstr "Jártasság"
 msgid "Profile"
 msgstr "Profil"
 
-#: src/dialogs/resume/sections/custom.tsx src/libs/resume/section-title.ts
+#: src/dialogs/resume/sections/custom.tsx
+#: src/libs/resume/section-title.ts
 #: src/libs/resume/section.tsx
 msgid "Profiles"
 msgstr "Profilok"
@@ -3171,7 +3202,8 @@ msgstr "Profilok"
 msgid "Progress Bar"
 msgstr "Folyamatjelző sáv"
 
-#: src/dialogs/resume/sections/custom.tsx src/libs/resume/section-title.ts
+#: src/dialogs/resume/sections/custom.tsx
+#: src/libs/resume/section-title.ts
 #: src/libs/resume/section.tsx
 msgid "Projects"
 msgstr "Projektek"
@@ -3192,7 +3224,8 @@ msgstr "Szolgáltató"
 msgid "Provider connection verified."
 msgstr "Szolgáltatói kapcsolat ellenőrizve."
 
-#: src/dialogs/resume/sections/custom.tsx src/libs/resume/section-title.ts
+#: src/dialogs/resume/sections/custom.tsx
+#: src/libs/resume/section-title.ts
 #: src/libs/resume/section.tsx
 msgid "Publications"
 msgstr "Publikációk"
@@ -3268,7 +3301,8 @@ msgstr "Téglalap (teljes szélesség)"
 msgid "Redo"
 msgstr "Újra"
 
-#: src/dialogs/resume/sections/custom.tsx src/libs/resume/section-title.ts
+#: src/dialogs/resume/sections/custom.tsx
+#: src/libs/resume/section-title.ts
 #: src/libs/resume/section.tsx
 msgid "References"
 msgstr "Referenciák"
@@ -3394,7 +3428,8 @@ msgstr "Visszaállítja ezt a verziót?"
 
 #: src/features/applications/components/application-form-sheet.tsx
 #: src/features/resume/export/download-dialog.tsx
-#: src/routes/agent/-components/resume-pane.tsx src/routes/agent/$threadId.tsx
+#: src/routes/agent/-components/resume-pane.tsx
+#: src/routes/agent/$threadId.tsx
 msgid "Resume"
 msgstr "Önéletrajz"
 
@@ -3520,7 +3555,8 @@ msgstr "Mentés és feltöltés"
 msgid "Save changes"
 msgstr "Módosítások mentése"
 
-#: src/dialogs/resume/index.tsx src/dialogs/resume/sections/award.tsx
+#: src/dialogs/resume/index.tsx
+#: src/dialogs/resume/sections/award.tsx
 #: src/dialogs/resume/sections/certification.tsx
 #: src/dialogs/resume/sections/cover-letter.tsx
 #: src/dialogs/resume/sections/custom.tsx
@@ -3760,8 +3796,10 @@ msgstr "Link megjelenítése a címben"
 #. Accessible label for toggle button that reveals the masked new password
 #. Accessible label for toggle button that reveals the masked password in two-factor disable dialog
 #. Accessible label for toggle button that reveals the masked password in two-factor setup
-#: src/dialogs/auth/change-password.tsx src/dialogs/auth/disable-two-factor.tsx
-#: src/dialogs/auth/enable-two-factor.tsx src/features/auth/pages/login.tsx
+#: src/dialogs/auth/change-password.tsx
+#: src/dialogs/auth/disable-two-factor.tsx
+#: src/dialogs/auth/enable-two-factor.tsx
+#: src/features/auth/pages/login.tsx
 #: src/features/auth/pages/register.tsx
 #: src/features/auth/pages/reset-password.tsx
 #: src/features/auth/pages/resume-password.tsx
@@ -3854,7 +3892,8 @@ msgstr "Egyoszlopos; kifinomult és komoly, vezetői vagy vállalati szintű poz
 msgid "Size"
 msgstr "Méret"
 
-#: src/dialogs/resume/sections/custom.tsx src/libs/resume/section-title.ts
+#: src/dialogs/resume/sections/custom.tsx
+#: src/libs/resume/section-title.ts
 #: src/libs/resume/section.tsx
 msgid "Skills"
 msgstr "Készségek"
@@ -4017,7 +4056,8 @@ msgstr "Javaslatok"
 
 #. Fallback title for a custom summary item in resume builder when content is empty
 #. Fallback title for a custom summary item in resume builder when content is unavailable
-#: src/dialogs/resume/sections/custom.tsx src/libs/resume/section-title.ts
+#: src/dialogs/resume/sections/custom.tsx
+#: src/libs/resume/section-title.ts
 #: src/libs/resume/section.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/sections/custom.tsx
 msgid "Summary"
@@ -4645,7 +4685,8 @@ msgid "Use sample"
 msgstr "Minta használata"
 
 #. Label for username input on registration form
-#: src/dialogs/resume/sections/profile.tsx src/features/auth/pages/register.tsx
+#: src/dialogs/resume/sections/profile.tsx
+#: src/features/auth/pages/register.tsx
 #: src/features/settings/pages/profile.tsx
 msgid "Username"
 msgstr "Felhasználónév"
@@ -4713,7 +4754,8 @@ msgstr "vietnámi"
 msgid "Views"
 msgstr "Megtekintések"
 
-#: src/dialogs/resume/sections/custom.tsx src/libs/resume/section-title.ts
+#: src/dialogs/resume/sections/custom.tsx
+#: src/libs/resume/section-title.ts
 #: src/libs/resume/section.tsx
 msgid "Volunteer"
 msgstr "Önkéntesség"

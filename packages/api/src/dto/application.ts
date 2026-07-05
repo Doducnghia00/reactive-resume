@@ -8,6 +8,20 @@ import {
 	contactSchema,
 } from "@reactive-resume/schema/applications/data";
 
+const MAX_APPLICATION_JOB_DESCRIPTION_CHARS = 20_000;
+
+const httpUrlSchema = z
+	.string()
+	.trim()
+	.refine((value) => {
+		try {
+			const parsed = new URL(value);
+			return parsed.protocol === "http:" || parsed.protocol === "https:";
+		} catch {
+			return false;
+		}
+	}, "URL must use http or https.");
+
 const applicationSchema = createSelectSchema(schema.application, {
 	id: z.string().describe("The ID of the application."),
 	company: z.string().trim().min(1).describe("The company applied to."),
@@ -18,8 +32,8 @@ const applicationSchema = createSelectSchema(schema.application, {
 	archived: z.boolean(),
 	resumeId: z.string().nullable().describe("The linked Reactive Resume, if any."),
 	source: z.string().trim().nullable(),
-	sourceUrl: z.string().trim().nullable(),
-	jobDescription: z.string().nullable(),
+	sourceUrl: httpUrlSchema.nullable(),
+	jobDescription: z.string().max(MAX_APPLICATION_JOB_DESCRIPTION_CHARS).nullable(),
 	matchScore: z.number().int().min(0).max(100).nullable(),
 	aiMetadata: aiMetadataSchema.nullable(),
 	notes: z.string().nullable(),

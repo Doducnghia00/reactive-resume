@@ -27,7 +27,8 @@ msgstr ""
 msgid "\"{0} · {1}\" and its full timeline will be permanently deleted. This can't be undone."
 msgstr "\"{0} · {1}\" un visa tās laika skala tiks neatgriezeniski dzēsta. To nevar atsaukt."
 
-#: src/routes/_home/-sections/footer.tsx src/routes/_home/-sections/hero.tsx
+#: src/routes/_home/-sections/footer.tsx
+#: src/routes/_home/-sections/hero.tsx
 msgid "(opens in new tab)"
 msgstr "(atveras jaunā cilnē)"
 
@@ -608,7 +609,8 @@ msgctxt "(noun) person, organization, or entity that gives an award"
 msgid "Awarder"
 msgstr "Apbalvotājs"
 
-#: src/dialogs/resume/sections/custom.tsx src/libs/resume/section-title.ts
+#: src/dialogs/resume/sections/custom.tsx
+#: src/libs/resume/section-title.ts
 #: src/libs/resume/section.tsx
 msgid "Awards"
 msgstr "Apbalvojumi"
@@ -705,7 +707,8 @@ msgid "Bullet List"
 msgstr "Aizzīmju saraksts"
 
 #. Tagline shown in app footer/about area
-#: src/components/ui/copyright.tsx src/routes/_home/-sections/features.tsx
+#: src/components/ui/copyright.tsx
+#: src/routes/_home/-sections/features.tsx
 #: src/routes/_home/-sections/prefooter.tsx
 msgid "By the community, for the community."
 msgstr "No kopienas kopienai."
@@ -729,7 +732,8 @@ msgstr "Vai varu eksportēt savu CV uz PDF?"
 #: src/features/applications/components/import-applications-sheet.tsx
 #: src/features/settings/pages/api-keys.tsx
 #: src/features/settings/pages/danger-zone.tsx
-#: src/features/settings/pages/profile.tsx src/hooks/use-prompt.tsx
+#: src/features/settings/pages/profile.tsx
+#: src/hooks/use-prompt.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/sections/custom.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/shared/section-item.tsx
@@ -750,7 +754,8 @@ msgstr "Katalāņu"
 msgid "Center Align"
 msgstr "Centrēt"
 
-#: src/dialogs/resume/sections/custom.tsx src/libs/resume/section-title.ts
+#: src/dialogs/resume/sections/custom.tsx
+#: src/libs/resume/section-title.ts
 #: src/libs/resume/section.tsx
 msgid "Certifications"
 msgstr "Sertifikāti"
@@ -775,7 +780,8 @@ msgstr "Pārdomājāt? Pārsauciet savu CV par kaut ko aprakstošāku."
 msgid "Changelog"
 msgstr "Izmaiņu žurnāls"
 
-#: src/routes/agent/-components/agent-chat.tsx src/routes/agent/$threadId.tsx
+#: src/routes/agent/-components/agent-chat.tsx
+#: src/routes/agent/$threadId.tsx
 msgid "Chat"
 msgstr "Tērzēšana"
 
@@ -887,7 +893,8 @@ msgstr "Pilnībā bez maksas, uz visiem laikiem, bez slēptām izmaksām."
 
 #. Account deletion confirmation dialog confirm action in danger zone
 #. Create API key dialog acknowledgment action after copying
-#: src/dialogs/api-key/create.tsx src/features/settings/pages/danger-zone.tsx
+#: src/dialogs/api-key/create.tsx
+#: src/features/settings/pages/danger-zone.tsx
 #: src/hooks/use-prompt.tsx
 #: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
 msgid "Confirm"
@@ -922,7 +929,8 @@ msgstr "Saturs"
 #. Button label to continue to dashboard after successful registration
 #. Final action button after saving backup codes
 #. Primary action button to proceed to next step in two-factor setup
-#: src/dialogs/auth/enable-two-factor.tsx src/features/auth/pages/register.tsx
+#: src/dialogs/auth/enable-two-factor.tsx
+#: src/features/auth/pages/register.tsx
 msgid "Continue"
 msgstr "Turpināt"
 
@@ -1039,7 +1047,8 @@ msgstr "Motivācijas vēstule"
 
 #. Fallback title for a custom cover letter item in resume builder when recipient is empty
 #. Fallback title for a custom cover letter item in resume builder when recipient is unavailable
-#: src/dialogs/resume/sections/custom.tsx src/libs/resume/section-title.ts
+#: src/dialogs/resume/sections/custom.tsx
+#: src/libs/resume/section-title.ts
 #: src/libs/resume/section.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/sections/custom.tsx
 msgid "Cover Letter"
@@ -1050,7 +1059,8 @@ msgid "Cover letter draft"
 msgstr "Motivācijas vēstules melnraksts"
 
 #. Create API key dialog submit action
-#: src/dialogs/api-key/create.tsx src/dialogs/resume/index.tsx
+#: src/dialogs/api-key/create.tsx
+#: src/dialogs/resume/index.tsx
 #: src/dialogs/resume/sections/award.tsx
 #: src/dialogs/resume/sections/certification.tsx
 #: src/dialogs/resume/sections/cover-letter.tsx
@@ -1078,7 +1088,8 @@ msgstr "Izveidot šim darbam pielāgotu kopiju"
 msgid "Create a new account"
 msgstr "Izveidot jaunu kontu"
 
-#: src/dialogs/api-key/create.tsx src/features/settings/pages/api-keys.tsx
+#: src/dialogs/api-key/create.tsx
+#: src/features/settings/pages/api-keys.tsx
 msgid "Create a new API key"
 msgstr "Izveidot jaunu API atslēgu"
 
@@ -1130,7 +1141,8 @@ msgstr "Izveidot jaunu publikāciju"
 msgid "Create a new reference"
 msgstr "Izveidot jaunu atsauksmi"
 
-#: src/dialogs/resume/index.tsx src/features/command-palette/pages/resumes.tsx
+#: src/dialogs/resume/index.tsx
+#: src/features/command-palette/pages/resumes.tsx
 #: src/routes/dashboard/resumes/-components/cards/create-card.tsx
 #: src/routes/dashboard/resumes/-components/list-view.tsx
 msgid "Create a new resume"
@@ -1231,7 +1243,8 @@ msgid "Danish"
 msgstr "Dāņu"
 
 #. Appearance theme option for dark mode
-#: src/features/user/dropdown-menu.tsx src/libs/theme.ts
+#: src/features/user/dropdown-menu.tsx
+#: src/libs/theme.ts
 msgid "Dark"
 msgstr "Tumšs"
 
@@ -1527,7 +1540,8 @@ msgstr "Rediģēšana ir atspējota, līdz to atbloķējat."
 msgid "Editing keyword..."
 msgstr "Atslēgvārda rediģēšana..."
 
-#: src/dialogs/resume/sections/custom.tsx src/libs/resume/section-title.ts
+#: src/dialogs/resume/sections/custom.tsx
+#: src/libs/resume/section-title.ts
 #: src/libs/resume/section.tsx
 msgid "Education"
 msgstr "Izglītība"
@@ -1540,7 +1554,8 @@ msgstr "E-pasts"
 #. Label for email input on registration form
 #. Label for login identifier input that accepts email or username
 #: src/features/auth/pages/forgot-password.tsx
-#: src/features/auth/pages/login.tsx src/features/auth/pages/register.tsx
+#: src/features/auth/pages/login.tsx
+#: src/features/auth/pages/register.tsx
 #: src/features/settings/pages/profile.tsx
 msgid "Email Address"
 msgstr "E-pasta adrese"
@@ -1625,7 +1640,8 @@ msgstr "Viss, kas jums nepieciešams, lai izveidotu, pielāgotu un kopīgotu pro
 msgid "Exit Fullscreen"
 msgstr "Iziet no pilnekrāna"
 
-#: src/dialogs/resume/sections/custom.tsx src/libs/resume/section-title.ts
+#: src/dialogs/resume/sections/custom.tsx
+#: src/libs/resume/section-title.ts
 #: src/libs/resume/section.tsx
 msgid "Experience"
 msgstr "Pieredze"
@@ -2109,7 +2125,8 @@ msgstr "Šeit pieejams dažādu profesiju un personību CV veidņu klāsts. Neat
 msgid "Here's your new API key"
 msgstr "Lūk, jūsu jaunā API atslēga"
 
-#: src/components/level/combobox.tsx src/dialogs/resume/sections/language.tsx
+#: src/components/level/combobox.tsx
+#: src/dialogs/resume/sections/language.tsx
 #: src/dialogs/resume/sections/skill.tsx
 msgid "Hidden"
 msgstr "Slēpts"
@@ -2136,8 +2153,10 @@ msgstr "Slēpt saites pasvītrojumu"
 #. Accessible label for toggle button that hides the visible new password
 #. Accessible label for toggle button that hides the visible password in two-factor disable dialog
 #. Accessible label for toggle button that hides the visible password in two-factor setup
-#: src/dialogs/auth/change-password.tsx src/dialogs/auth/disable-two-factor.tsx
-#: src/dialogs/auth/enable-two-factor.tsx src/features/auth/pages/login.tsx
+#: src/dialogs/auth/change-password.tsx
+#: src/dialogs/auth/disable-two-factor.tsx
+#: src/dialogs/auth/enable-two-factor.tsx
+#: src/features/auth/pages/login.tsx
 #: src/features/auth/pages/register.tsx
 #: src/features/auth/pages/reset-password.tsx
 #: src/features/auth/pages/resume-password.tsx
@@ -2202,7 +2221,8 @@ msgstr "Ikona"
 msgid "Identify gaps for an applicant tracking system and apply only high-confidence keyword improvements."
 msgstr "Nosakiet pretendentu izsekošanas sistēmas nepilnības un izmantojiet tikai augstas uzticamības atslēgvārdu uzlabojumus."
 
-#: src/dialogs/resume/import.tsx src/routes/dashboard/resumes/index.tsx
+#: src/dialogs/resume/import.tsx
+#: src/routes/dashboard/resumes/index.tsx
 msgid "Import"
 msgstr "Importēt"
 
@@ -2281,7 +2301,8 @@ msgstr "Tūlītēja ģenerēšana"
 msgid "Integrations"
 msgstr "Integrācija"
 
-#: src/dialogs/resume/sections/custom.tsx src/libs/resume/section-title.ts
+#: src/dialogs/resume/sections/custom.tsx
+#: src/libs/resume/section-title.ts
 #: src/libs/resume/section.tsx
 msgid "Interests"
 msgstr "Intereses"
@@ -2328,13 +2349,15 @@ msgstr "Darba meklēšanas process"
 
 #. Example full name placeholder on profile settings form
 #. Example full name placeholder on registration form
-#: src/features/auth/pages/register.tsx src/features/settings/pages/profile.tsx
+#: src/features/auth/pages/register.tsx
+#: src/features/settings/pages/profile.tsx
 msgid "John Doe"
 msgstr "John Doe"
 
 #. Example username placeholder on profile settings form
 #. Example username placeholder on registration form
-#: src/features/auth/pages/register.tsx src/features/settings/pages/profile.tsx
+#: src/features/auth/pages/register.tsx
+#: src/features/settings/pages/profile.tsx
 msgid "john.doe"
 msgstr "john.doe"
 
@@ -2343,7 +2366,8 @@ msgstr "john.doe"
 #. Example email placeholder on profile settings form
 #. Example email placeholder on registration form
 #: src/features/auth/pages/forgot-password.tsx
-#: src/features/auth/pages/login.tsx src/features/auth/pages/register.tsx
+#: src/features/auth/pages/login.tsx
+#: src/features/auth/pages/register.tsx
 #: src/features/settings/pages/profile.tsx
 msgid "john.doe@example.com"
 msgstr "john.doe@example.com"
@@ -2404,7 +2428,8 @@ msgstr "Ainava"
 msgid "Language"
 msgstr "Valoda"
 
-#: src/dialogs/resume/sections/custom.tsx src/libs/resume/section-title.ts
+#: src/dialogs/resume/sections/custom.tsx
+#: src/libs/resume/section-title.ts
 #: src/libs/resume/section.tsx
 msgid "Languages"
 msgstr "Valodas"
@@ -2484,7 +2509,8 @@ msgid "Licensed under <0>MIT</0>."
 msgstr "Licencēts ar <0>MIT</0>."
 
 #. Appearance theme option for light mode
-#: src/features/user/dropdown-menu.tsx src/libs/theme.ts
+#: src/features/user/dropdown-menu.tsx
+#: src/libs/theme.ts
 msgid "Light"
 msgstr "Gaišs"
 
@@ -2684,13 +2710,15 @@ msgid "Must start with https://"
 msgstr "Jāuzsāk ar https://"
 
 #. Label for full name input on registration form
-#: src/dialogs/api-key/create.tsx src/dialogs/resume/index.tsx
+#: src/dialogs/api-key/create.tsx
+#: src/dialogs/resume/index.tsx
 #: src/dialogs/resume/sections/interest.tsx
 #: src/dialogs/resume/sections/project.tsx
 #: src/dialogs/resume/sections/reference.tsx
 #: src/dialogs/resume/sections/skill.tsx
 #: src/features/applications/components/application-detail-sheet.tsx
-#: src/features/auth/pages/register.tsx src/features/settings/pages/profile.tsx
+#: src/features/auth/pages/register.tsx
+#: src/features/settings/pages/profile.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/sections/basics.tsx
 #: src/routes/dashboard/resumes/index.tsx
 msgid "Name"
@@ -2879,7 +2907,8 @@ msgstr "OpenAI saderīgs"
 msgid "OpenRouter"
 msgstr "OpenRouter"
 
-#: src/routes/_home/-sections/donate.tsx src/routes/_home/-sections/footer.tsx
+#: src/routes/_home/-sections/donate.tsx
+#: src/routes/_home/-sections/footer.tsx
 msgid "opens in new tab"
 msgstr "atveras jaunā cilnē"
 
@@ -2960,7 +2989,8 @@ msgstr "Piekļuves atslēgas un 2FA"
 #. Label for password input on protected resume access form
 #. Label for password input on registration form
 #: src/dialogs/auth/disable-two-factor.tsx
-#: src/dialogs/auth/enable-two-factor.tsx src/features/auth/pages/login.tsx
+#: src/dialogs/auth/enable-two-factor.tsx
+#: src/features/auth/pages/login.tsx
 #: src/features/auth/pages/register.tsx
 #: src/features/auth/pages/resume-password.tsx
 #: src/features/settings/authentication/components/hooks.tsx
@@ -3162,7 +3192,8 @@ msgstr "Prasmju līmenis"
 msgid "Profile"
 msgstr "Profils"
 
-#: src/dialogs/resume/sections/custom.tsx src/libs/resume/section-title.ts
+#: src/dialogs/resume/sections/custom.tsx
+#: src/libs/resume/section-title.ts
 #: src/libs/resume/section.tsx
 msgid "Profiles"
 msgstr "Profili"
@@ -3171,7 +3202,8 @@ msgstr "Profili"
 msgid "Progress Bar"
 msgstr "Progresa josla"
 
-#: src/dialogs/resume/sections/custom.tsx src/libs/resume/section-title.ts
+#: src/dialogs/resume/sections/custom.tsx
+#: src/libs/resume/section-title.ts
 #: src/libs/resume/section.tsx
 msgid "Projects"
 msgstr "Projekti"
@@ -3192,7 +3224,8 @@ msgstr "Pakalpojumu sniedzējs"
 msgid "Provider connection verified."
 msgstr "Pakalpojumu sniedzēja savienojums ir pārbaudīts."
 
-#: src/dialogs/resume/sections/custom.tsx src/libs/resume/section-title.ts
+#: src/dialogs/resume/sections/custom.tsx
+#: src/libs/resume/section-title.ts
 #: src/libs/resume/section.tsx
 msgid "Publications"
 msgstr "Publikācijas"
@@ -3268,7 +3301,8 @@ msgstr "Taisnstūris (pilns platums)"
 msgid "Redo"
 msgstr "Atkārtot"
 
-#: src/dialogs/resume/sections/custom.tsx src/libs/resume/section-title.ts
+#: src/dialogs/resume/sections/custom.tsx
+#: src/libs/resume/section-title.ts
 #: src/libs/resume/section.tsx
 msgid "References"
 msgstr "Atsauksmes"
@@ -3394,7 +3428,8 @@ msgstr "Vai atjaunot šo versiju?"
 
 #: src/features/applications/components/application-form-sheet.tsx
 #: src/features/resume/export/download-dialog.tsx
-#: src/routes/agent/-components/resume-pane.tsx src/routes/agent/$threadId.tsx
+#: src/routes/agent/-components/resume-pane.tsx
+#: src/routes/agent/$threadId.tsx
 msgid "Resume"
 msgstr "CV"
 
@@ -3520,7 +3555,8 @@ msgstr "Saglabāt un augšupielādēt"
 msgid "Save changes"
 msgstr "Saglabāt izmaiņas"
 
-#: src/dialogs/resume/index.tsx src/dialogs/resume/sections/award.tsx
+#: src/dialogs/resume/index.tsx
+#: src/dialogs/resume/sections/award.tsx
 #: src/dialogs/resume/sections/certification.tsx
 #: src/dialogs/resume/sections/cover-letter.tsx
 #: src/dialogs/resume/sections/custom.tsx
@@ -3760,8 +3796,10 @@ msgstr "Rādīt saiti virsrakstā"
 #. Accessible label for toggle button that reveals the masked new password
 #. Accessible label for toggle button that reveals the masked password in two-factor disable dialog
 #. Accessible label for toggle button that reveals the masked password in two-factor setup
-#: src/dialogs/auth/change-password.tsx src/dialogs/auth/disable-two-factor.tsx
-#: src/dialogs/auth/enable-two-factor.tsx src/features/auth/pages/login.tsx
+#: src/dialogs/auth/change-password.tsx
+#: src/dialogs/auth/disable-two-factor.tsx
+#: src/dialogs/auth/enable-two-factor.tsx
+#: src/features/auth/pages/login.tsx
 #: src/features/auth/pages/register.tsx
 #: src/features/auth/pages/reset-password.tsx
 #: src/features/auth/pages/resume-password.tsx
@@ -3854,7 +3892,8 @@ msgstr "Vienkolonnu izkārtojums; nopietns un noslīpēts vecākā līmeņa vai 
 msgid "Size"
 msgstr "Izmērs"
 
-#: src/dialogs/resume/sections/custom.tsx src/libs/resume/section-title.ts
+#: src/dialogs/resume/sections/custom.tsx
+#: src/libs/resume/section-title.ts
 #: src/libs/resume/section.tsx
 msgid "Skills"
 msgstr "Prasmes"
@@ -4017,7 +4056,8 @@ msgstr "Ieteikumi"
 
 #. Fallback title for a custom summary item in resume builder when content is empty
 #. Fallback title for a custom summary item in resume builder when content is unavailable
-#: src/dialogs/resume/sections/custom.tsx src/libs/resume/section-title.ts
+#: src/dialogs/resume/sections/custom.tsx
+#: src/libs/resume/section-title.ts
 #: src/libs/resume/section.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/sections/custom.tsx
 msgid "Summary"
@@ -4645,7 +4685,8 @@ msgid "Use sample"
 msgstr "Izmantot paraugu"
 
 #. Label for username input on registration form
-#: src/dialogs/resume/sections/profile.tsx src/features/auth/pages/register.tsx
+#: src/dialogs/resume/sections/profile.tsx
+#: src/features/auth/pages/register.tsx
 #: src/features/settings/pages/profile.tsx
 msgid "Username"
 msgstr "Lietotājvārds"
@@ -4713,7 +4754,8 @@ msgstr "Vjetnamiešu"
 msgid "Views"
 msgstr "Skatījumi"
 
-#: src/dialogs/resume/sections/custom.tsx src/libs/resume/section-title.ts
+#: src/dialogs/resume/sections/custom.tsx
+#: src/libs/resume/section-title.ts
 #: src/libs/resume/section.tsx
 msgid "Volunteer"
 msgstr "Brīvprātīgais darbs"
