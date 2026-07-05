@@ -53,6 +53,8 @@
 						"pages": [
 							"guides/creating-your-first-resume",
 							"guides/managing-resumes-from-the-dashboard",
+							"guides/tracking-job-applications",
+							"guides/importing-applications-from-csv",
 							"guides/importing-resumes",
 							"guides/choosing-a-template",
 							"guides/selecting-page-format",
