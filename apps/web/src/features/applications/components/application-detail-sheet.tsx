@@ -1,11 +1,21 @@
-import type { ApplicationStatus } from "@reactive-resume/schema/applications/data";
+import type { ApplicationStatus, Contact } from "@reactive-resume/schema/applications/data";
 import type { Application } from "../types";
 import { t } from "@lingui/core/macro";
 import { Trans } from "@lingui/react/macro";
-import { ArrowRightIcon, ArrowSquareOutIcon, PencilSimpleIcon, TrashIcon, XCircleIcon } from "@phosphor-icons/react";
+import {
+	ArrowRightIcon,
+	ArrowSquareOutIcon,
+	FilePdfIcon,
+	PencilSimpleIcon,
+	PlusIcon,
+	TrashIcon,
+	UploadSimpleIcon,
+	XCircleIcon,
+	XIcon,
+} from "@phosphor-icons/react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { toast } from "sonner";
 import { STAGES } from "@reactive-resume/schema/applications/data";
 import { Button } from "@reactive-resume/ui/components/button";
@@ -80,6 +90,37 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }: Pr
 		}),
 	);
 
+	const fileInputRef = useRef<HTMLInputElement>(null);
+	const uploadCoverLetter = useMutation(orpc.storage.uploadFile.mutationOptions({ meta: { noInvalidate: true } }));
+	const deleteFile = useMutation(orpc.storage.deleteFile.mutationOptions({ meta: { noInvalidate: true } }));
+
+	const onSelectCoverLetter = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const file = event.target.files?.[0];
+		if (!file || !current) return;
+		if (file.type !== "application/pdf") {
+			toast.error(t`Please upload a PDF file.`);
+			return;
+		}
+		const toastId = toast.loading(t`Uploading cover letter…`);
+		uploadCoverLetter.mutate(file, {
+			onSuccess: ({ url }) => {
+				toast.dismiss(toastId);
+				update.mutate({ id: current.id, coverLetterUrl: url, coverLetterName: file.name });
+				if (fileInputRef.current) fileInputRef.current.value = "";
+			},
+			onError: () => toast.error(t`Couldn't upload the file. Please try again.`, { id: toastId }),
+		});
+	};
+
+	const removeCoverLetter = () => {
+		if (!current?.coverLetterUrl) return;
+		// Best-effort delete of the stored file; the storage route defaults a bare filename to the
+		// user's upload dir. Clear the fields regardless so the UI reflects the removal.
+		const filename = new URL(current.coverLetterUrl, window.location.origin).pathname.split("/").pop();
+		if (filename) deleteFile.mutate({ filename });
+		update.mutate({ id: current.id, coverLetterUrl: null, coverLetterName: null });
+	};
+
 	if (!current) return null;
 
 	const idx = stageIndex(current.status);
@@ -151,7 +192,7 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }: Pr
 						</a>
 					)}
 
-					{/* linked resume */}
+					{/* documents: linked resume + cover letter */}
 					<Section title={t`Documents sent`}>
 						{current.resumeId ? (
 							<Link
@@ -172,31 +213,58 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }: Pr
 								<Trans>No resume linked.</Trans>
 							</p>
 						)}
+
+						{current.coverLetterUrl ? (
+							<div className="flex items-center gap-3 rounded-lg border border-border p-2.5">
+								<span className="flex size-8 items-center justify-center rounded-md bg-primary/10 text-primary">
+									<FilePdfIcon />
+								</span>
+								<a
+									href={current.coverLetterUrl}
+									target="_blank"
+									rel="noreferrer"
+									className="min-w-0 flex-1 truncate text-sm hover:underline"
+								>
+									{current.coverLetterName || t`Cover letter`}
+								</a>
+								<button
+									type="button"
+									title={t`Remove cover letter`}
+									className="text-muted-foreground hover:text-destructive"
+									onClick={removeCoverLetter}
+								>
+									<XIcon />
+								</button>
+							</div>
+						) : (
+							<button
+								type="button"
+								disabled={uploadCoverLetter.isPending}
+								onClick={() => fileInputRef.current?.click()}
+								className="flex w-full items-center gap-2 rounded-lg border border-border border-dashed p-2.5 text-muted-foreground text-sm hover:bg-muted/50 disabled:opacity-60"
+							>
+								<UploadSimpleIcon />
+								{uploadCoverLetter.isPending ? <Trans>Uploading…</Trans> : <Trans>Attach a cover letter (PDF)</Trans>}
+							</button>
+						)}
+						<input
+							ref={fileInputRef}
+							type="file"
+							accept="application/pdf"
+							className="hidden"
+							onChange={onSelectCoverLetter}
+						/>
 					</Section>
 
 					{/* contacts */}
-					{current.contacts.length > 0 && (
-						<Section title={t`Contacts`}>
-							<div className="flex flex-col gap-2">
-								{current.contacts.map((contact, i) => (
-									<div key={`${contact.name}-${i}`} className="flex items-center gap-3 text-sm">
-										<span className="flex size-8 items-center justify-center rounded-full bg-muted font-medium text-xs">
-											{contact.name.slice(0, 2).toUpperCase()}
-										</span>
-										<div className="min-w-0 flex-1">
-											<div className="truncate font-medium">{contact.name}</div>
-											{contact.role && <div className="truncate text-muted-foreground text-xs">{contact.role}</div>}
-										</div>
-										{contact.type && (
-											<span className="rounded-full bg-muted px-2 py-0.5 text-[11px] text-muted-foreground">
-												{contact.type}
-											</span>
-										)}
-									</div>
-								))}
-							</div>
-						</Section>
-					)}
+					<Section title={t`Contacts`}>
+						<ContactsEditor
+							key={current.id}
+							contacts={current.contacts}
+							pending={update.isPending}
+							onChange={(contacts) => update.mutate({ id: current.id, contacts })}
+						/>
+					</Section>
 
 					{/* follow-up */}
 					{current.followUpAt && (
@@ -286,6 +354,108 @@ function Fact({ label, value }: { label: string; value: string | null | undefine
 		<div>
 			<dt className="text-muted-foreground text-xs">{label}</dt>
 			<dd className="mt-0.5 font-medium">{value || "—"}</dd>
+		</div>
+	);
+}
+
+type ContactsEditorProps = {
+	contacts: Contact[];
+	pending: boolean;
+	onChange: (contacts: Contact[]) => void;
+};
+
+function ContactsEditor({ contacts, pending, onChange }: ContactsEditorProps) {
+	const [adding, setAdding] = useState(false);
+	const [draft, setDraft] = useState({ name: "", role: "", type: "" });
+
+	const reset = () => {
+		setDraft({ name: "", role: "", type: "" });
+		setAdding(false);
+	};
+
+	const add = () => {
+		const name = draft.name.trim();
+		if (!name) return;
+		onChange([...contacts, { name, role: draft.role.trim(), type: draft.type.trim() }]);
+		reset();
+	};
+
+	const removeAt = (index: number) => onChange(contacts.filter((_, i) => i !== index));
+
+	return (
+		<div className="flex flex-col gap-2">
+			{contacts.map((contact, i) => (
+				<div key={`${contact.name}-${i}`} className="group flex items-center gap-3 text-sm">
+					<span className="flex size-8 items-center justify-center rounded-full bg-muted font-medium text-xs">
+						{contact.name.slice(0, 2).toUpperCase()}
+					</span>
+					<div className="min-w-0 flex-1">
+						<div className="truncate font-medium">{contact.name}</div>
+						{contact.role && <div className="truncate text-muted-foreground text-xs">{contact.role}</div>}
+					</div>
+					{contact.type && (
+						<span className="rounded-full bg-muted px-2 py-0.5 text-[11px] text-muted-foreground">{contact.type}</span>
+					)}
+					<button
+						type="button"
+						title={t`Remove contact`}
+						disabled={pending}
+						className="text-muted-foreground opacity-0 transition-opacity hover:text-destructive disabled:opacity-40 group-hover:opacity-100"
+						onClick={() => removeAt(i)}
+					>
+						<XIcon />
+					</button>
+				</div>
+			))}
+
+			{adding ? (
+				<div className="flex flex-col gap-2 rounded-lg border border-border p-2.5">
+					<Input
+						value={draft.name}
+						placeholder={t`Name`}
+						autoFocus
+						onChange={(event) => setDraft((d) => ({ ...d, name: event.target.value }))}
+						onKeyDown={(event) => {
+							if (event.key === "Enter") add();
+						}}
+					/>
+					<div className="grid grid-cols-2 gap-2">
+						<Input
+							value={draft.role}
+							placeholder={t`Role (optional)`}
+							onChange={(event) => setDraft((d) => ({ ...d, role: event.target.value }))}
+						/>
+						<Input
+							value={draft.type}
+							list="contact-types"
+							placeholder={t`Label`}
+							onChange={(event) => setDraft((d) => ({ ...d, type: event.target.value }))}
+						/>
+					</div>
+					<datalist id="contact-types">
+						<option value="Recruiter" />
+						<option value="Hiring Manager" />
+						<option value="Referral" />
+						<option value="Interviewer" />
+					</datalist>
+					<div className="flex justify-end gap-2">
+						<Button type="button" size="sm" variant="ghost" onClick={reset}>
+							<Trans>Cancel</Trans>
+						</Button>
+						<Button type="button" size="sm" disabled={!draft.name.trim() || pending} onClick={add}>
+							<Trans>Add</Trans>
+						</Button>
+					</div>
+				</div>
+			) : (
+				<button
+					type="button"
+					onClick={() => setAdding(true)}
+					className="flex items-center gap-1.5 self-start text-muted-foreground text-xs hover:text-foreground"
+				>
+					<PlusIcon /> <Trans>Add contact</Trans>
+				</button>
+			)}
 		</div>
 	);
 }

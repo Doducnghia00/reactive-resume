@@ -100,8 +100,17 @@ type ColumnProps = {
 	onEdit: (application: Application) => void;
 };
 
+// Cap the cards rendered per column so a stage with hundreds of applications doesn't mount
+// hundreds of draggable nodes at once. Users reveal the rest in batches. Server-side paging
+// isn't needed here — the list payload is small; the cost is DOM/drag nodes.
+const COLUMN_PAGE_SIZE = 50;
+
 function Column({ stage, applications, onOpen, onEdit }: ColumnProps) {
 	const { setNodeRef, isOver } = useDroppable({ id: stage.value });
+	const [visible, setVisible] = useState(COLUMN_PAGE_SIZE);
+
+	const shown = applications.slice(0, visible);
+	const remaining = applications.length - shown.length;
 
 	return (
 		<div className="flex w-72 shrink-0 flex-col rounded-2xl border border-border bg-muted/30">
@@ -119,9 +128,18 @@ function Column({ stage, applications, onOpen, onEdit }: ColumnProps) {
 					isOver && "bg-muted/60",
 				)}
 			>
-				{applications.map((app) => (
+				{shown.map((app) => (
 					<DraggableCard key={app.id} application={app} onOpen={() => onOpen(app)} onEdit={onEdit} />
 				))}
+				{remaining > 0 && (
+					<button
+						type="button"
+						onClick={() => setVisible((v) => v + COLUMN_PAGE_SIZE)}
+						className="rounded-lg border border-border border-dashed py-2 text-muted-foreground text-xs hover:bg-muted/60"
+					>
+						{t`Show ${Math.min(remaining, COLUMN_PAGE_SIZE)} more`}
+					</button>
+				)}
 			</div>
 		</div>
 	);

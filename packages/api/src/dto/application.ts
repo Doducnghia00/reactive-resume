@@ -24,6 +24,13 @@ const applicationSchema = createSelectSchema(schema.application, {
 	aiMetadata: aiMetadataSchema.nullable(),
 	campaign: z.string().trim().nullable(),
 	notes: z.string().nullable(),
+	// Rendered as an <a href>; only same-origin storage URLs are ever stored. Constrain to
+	// http(s)/relative so a hand-crafted `update` can't smuggle a `javascript:` href.
+	coverLetterUrl: z
+		.string()
+		.refine((value) => /^(https?:\/\/|\/)/.test(value), "Cover letter URL must be http(s) or a relative path.")
+		.nullable(),
+	coverLetterName: z.string().nullable(),
 	followUpAt: z.date().nullable(),
 	followUpNote: z.string().trim().nullable(),
 	tags: z.array(z.string()),
@@ -47,6 +54,8 @@ const editableSchema = applicationSchema.pick({
 	jobDescription: true,
 	campaign: true,
 	notes: true,
+	coverLetterUrl: true,
+	coverLetterName: true,
 	followUpAt: true,
 	followUpNote: true,
 	contacts: true,

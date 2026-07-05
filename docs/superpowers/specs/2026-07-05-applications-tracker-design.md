@@ -25,10 +25,10 @@ The working vertical slice: data model, CRUD, board, add/detail panels. Zero new
 - ✅ Detail slide-over: key facts, stage stepper, linked resume, contacts, follow-up, activity timeline + add-note, archive/delete.
 - ✅ Unit test: activity-logging path (`service.test.ts`). Typecheck / boundaries / biome clean.
 
-**Known small gaps to tidy in a later pass (⬜):**
-- ⬜ Extract Lingui messages (`pnpm --filter web ...` extract) so new `<Trans>`/`t` strings are translatable.
-- ⬜ Board loads all applications at once (fine for typical volumes). Add pagination/virtualization only if a user has hundreds. `// ponytail: revisit if volume grows`.
-- ⬜ Editing contacts from the Detail panel is read-only today (contacts are settable via API `update`, but there's no add/edit-contact UI). Add a small contacts editor.
+**Known small gaps — now closed (✅):**
+- ✅ Lingui messages extracted (`pnpm --filter web lingui:extract`) so the new `<Trans>`/`t` strings are translatable.
+- ✅ Board caps rendered cards per column (`COLUMN_PAGE_SIZE = 50`) with a "Show N more" button, so a stage with hundreds of applications doesn't mount hundreds of draggable nodes. Server-side paging still unneeded (list payload is small).
+- ✅ Contacts are editable from the Detail panel (`ContactsEditor`): add name/role/label, remove, persisted via API `update`'s existing `contacts` field.
 
 ---
 
@@ -64,8 +64,8 @@ Verified live against a real OpenAI provider (autofill, match score, tailor resu
 - ✅ **Context menus** — kebab "⋯" on board cards (hover) and table rows: Edit / Move to ▸ / Archive / Delete (`application-actions-menu.tsx`).
 - ✅ Review fixes: bulk stage-moves log activity; single-statement note append; "Mark rejected" + "no results" states; CSV BOM strip + 500-row cap + file-input reset.
 
-### 🧊 Deferred
-- **Cover-letter upload** — reverted. The shared storage `uploadFile` forces a `.jpeg` key for every file, so PDFs are stored/served wrong on the local backend. Needs storage-layer work (extension-preserving keys + lifecycle deletion) before re-adding. Link-to-Reactive-Resume remains the document feature.
+### ✅ Cover-letter upload (re-enabled)
+Un-deferred. The blocker was `storage/service.ts` hardcoding a `.jpeg` key for every upload, so a PDF was read back as an image. Fixed by deriving the key extension from the content type the router already passes (`buildFileKey` + `EXTENSION_BY_CONTENT_TYPE`) — images stay `.jpeg` (unchanged for avatars), PDFs get `.pdf` and the static handler's existing `.pdf` force-download path serves them correctly. Re-added `coverLetterUrl`/`coverLetterName` columns (migration `20260705125353_yielding_star_brand`), DTO editable fields, and a Documents-section upload/download/remove in the detail sheet (PDF-only, best-effort `storage.deleteFile` on remove). Link-to-Reactive-Resume remains the primary document feature; the cover letter sits alongside it.
 
 ---
 

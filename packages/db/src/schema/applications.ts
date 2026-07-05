@@ -38,6 +38,10 @@ export const application = pg.pgTable(
 		// Reserves the deferred campaigns feature; no management UI this pass.
 		campaign: pg.text("campaign"),
 		notes: pg.text("notes"),
+		// A cover letter sent with this application (PDF/doc uploaded to storage). Stored as the
+		// key returned by the storage upload plus the original filename for display.
+		coverLetterUrl: pg.text("cover_letter_url"),
+		coverLetterName: pg.text("cover_letter_name"),
 		followUpAt: pg.timestamp("follow_up_at", { withTimezone: true }),
 		followUpNote: pg.text("follow_up_note"),
 		contacts: pg.jsonb("contacts").notNull().$type<Contact[]>().default([]),

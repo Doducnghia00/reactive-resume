@@ -1,8 +1,8 @@
 {
 	"version": "8",
 	"dialect": "postgres",
-	"id": "b7790385-acf4-4cdb-a9d5-58269777aba8",
-	"prevIds": ["5b300270-4575-4f4b-9b43-588a3c083900"],
+	"id": "2b84167c-b49a-4fe4-a49f-9e524c358d1a",
+	"prevIds": ["15eff223-0ddb-4ad9-b73d-d2f7706b4d05"],
 	"ddl": [
 		{
 			"isRlsEnabled": false,
@@ -1243,6 +1243,32 @@
 			"generated": null,
 			"identity": null,
 			"name": "notes",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "application"
+		},
+		{
+			"type": "text",
+			"typeSchema": null,
+			"notNull": false,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "cover_letter_url",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "application"
+		},
+		{
+			"type": "text",
+			"typeSchema": null,
+			"notNull": false,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "cover_letter_name",
 			"entityType": "columns",
 			"schema": "public",
 			"table": "application"

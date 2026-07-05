@@ -39,6 +39,16 @@ msgstr "{0, plural, one {# ሚና} other {# ሚናዎች}}"
 msgid "{0} characters"
 msgstr "{0} ቁምፊዎች"
 
+#. placeholder {0}: importable.length
+#: src/features/applications/components/import-applications-sheet.tsx
+msgid "{0} ready to import"
+msgstr ""
+
+#. placeholder {0}: parsed.skipped
+#: src/features/applications/components/import-applications-sheet.tsx
+msgid "{0} skipped (missing company/role)"
+msgstr ""
+
 #: src/routes/builder/$resumeId/-sidebar/left/sections/custom.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/shared/section-menu.tsx
 msgid "{column, plural, one {# Column} other {# Columns}}"
@@ -89,6 +99,10 @@ msgstr "ወደ አሁን የምትጠቀሙበት ኢሜል አድራሻዎ የ�
 msgid "A free and open-source resume builder that simplifies the process of creating, updating, and sharing your resume."
 msgstr "የየታሪክዎን መፍጠር፣ ማዘመን እና መካፈል ሂደት የሚቀላቅል ነፃ እና ክፍት ምንጭ የየታሪክ ማቅረቢያ መገንቢያ።"
 
+#: src/features/applications/components/application-ai-copilot.tsx
+msgid "A friendly nudge for the recruiter"
+msgstr ""
+
 #: src/routes/builder/$resumeId/-components/dock.tsx
 #: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
 msgid "A link to your resume has been copied to clipboard."
@@ -105,6 +119,10 @@ msgstr "አዲስ የማረጋገጫ አገናኝ ወደ ኢሜል አድራሻ�
 #: src/components/ui/copyright.tsx
 msgid "A passion project by <0>Amruth Pillai</0>."
 msgstr "በ<0>Amruth Pillai</0> የተጀመረ የልብ ፕሮጀክት።"
+
+#: src/features/applications/components/application-ai-copilot.tsx
+msgid "A stretch"
+msgstr ""
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/page.tsx
 msgid "A4"
@@ -126,9 +144,18 @@ msgstr "የመለያ ምናሌ"
 msgid "Actual size (100%)"
 msgstr "ትክክለኛው መጠን (100%)"
 
+#: src/features/applications/components/application-detail-sheet.tsx
+#: src/features/applications/components/table-view.tsx
+msgid "Add"
+msgstr ""
+
 #: src/routes/builder/$resumeId/-sidebar/left/sections/custom-fields.tsx
 msgid "Add a custom field"
 msgstr "ብጁ መስክ ያክሉ"
+
+#: src/routes/dashboard/applications/index.tsx
+msgid "Add a job you're applying to, link the resume you sent, and move it through your pipeline as things progress."
+msgstr ""
 
 #: src/components/input/chip-input.tsx
 msgid "Add a keyword..."
@@ -196,9 +223,22 @@ msgstr "አዲስ ችሎታ ያክሉ"
 msgid "Add a new volunteer experience"
 msgstr "አዲስ የበኩል መደገፍ ልምድ ያክሉ"
 
+#: src/features/applications/components/application-detail-sheet.tsx
+msgid "Add a note or log activity…"
+msgstr ""
+
 #: src/features/settings/integrations/components/ai-section.tsx
 msgid "Add and test a provider before starting an agent thread."
 msgstr "የወኪል ክር ከመጀመርዎ በፊት አቅራቢ ያክሉ እና ይፈትሹ።"
+
+#: src/features/applications/components/application-form-sheet.tsx
+#: src/routes/dashboard/applications/index.tsx
+msgid "Add application"
+msgstr ""
+
+#: src/features/applications/components/application-detail-sheet.tsx
+msgid "Add contact"
+msgstr ""
 
 #: src/components/input/chip-input.tsx
 msgid "Add keyword"
@@ -224,6 +264,14 @@ msgstr "አቅራቢ ያክሉ"
 #: src/dialogs/resume/sections/experience.tsx
 msgid "Add Role"
 msgstr "ሚና ጨምር"
+
+#: src/features/applications/components/table-view.tsx
+msgid "Add tag"
+msgstr ""
+
+#: src/features/applications/components/application-form-sheet.tsx
+msgid "Add to pipeline"
+msgstr ""
 
 #: src/routes/agent/-components/agent-chat.tsx
 msgid "Adjust the resume for a remote-first role that values async communication and ownership."
@@ -284,6 +332,10 @@ msgstr "የAI አቅራቢዎች REDIS_URL እና ENCRYPTION_SECRET እንዲዋ
 #: src/libs/locale.ts
 msgid "Albanian"
 msgstr "አልባኒኛ"
+
+#: src/routes/dashboard/applications/index.tsx
+msgid "All"
+msgstr ""
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
 msgid "Allow Public Access"
@@ -360,9 +412,39 @@ msgstr "API ማጣቀሻ"
 msgid "App"
 msgstr "መተግበሪያ"
 
+#: src/features/applications/components/application-actions-menu.tsx
+msgid "Application actions"
+msgstr ""
+
+#: src/features/applications/components/application-form-sheet.tsx
+msgid "Application added to your pipeline."
+msgstr ""
+
+#: src/features/applications/components/application-ai-copilot.tsx
+msgid "Application Copilot"
+msgstr ""
+
+#: src/features/applications/components/application-actions-menu.tsx
+#: src/features/applications/components/application-detail-sheet.tsx
+msgid "Application deleted."
+msgstr ""
+
 #: src/routes/_home/-sections/statistics.tsx
 msgid "Application Statistics"
 msgstr "የመተግበሪያ ስታቲስቲክስ"
+
+#: src/features/applications/components/application-form-sheet.tsx
+msgid "Application updated."
+msgstr ""
+
+#: src/routes/dashboard/-components/sidebar.tsx
+#: src/routes/dashboard/applications/index.tsx
+msgid "Applications"
+msgstr ""
+
+#: src/features/applications/components/application-detail-sheet.tsx
+msgid "Applied on"
+msgstr ""
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/custom-styles.tsx
 msgid "Applied Rules"
@@ -372,10 +454,17 @@ msgstr "የተተገበሩ ህጎች"
 msgid "Arabic"
 msgstr "ዓረብኛ"
 
+#: src/features/applications/components/application-actions-menu.tsx
+#: src/features/applications/components/application-detail-sheet.tsx
+#: src/features/applications/components/table-view.tsx
 #: src/routes/agent/-components/agent-chat.tsx
 #: src/routes/agent/-components/thread-sidebar.tsx
 msgid "Archive"
 msgstr "ማህደር"
+
+#: src/routes/dashboard/applications/index.tsx
+msgid "Archived"
+msgstr ""
 
 #: src/hooks/use-form-blocker.tsx
 msgid "Are you sure you want to close this dialog?"
@@ -437,6 +526,10 @@ msgstr "የመገናኛ መጠን"
 msgid "Atlas Cloud supports Reactive Resume as a project sponsor. If your company would like to sponsor the project, email <0>{sponsorshipEmail}</0>."
 msgstr "አትላስ ክላውድ እንደ ፕሮጀክት ስፖንሰር ሪአክቲቭ ሪሴምን ይደግፋል። ኩባንያዎ ፕሮጀክቱን ስፖንሰር ማድረግ ከፈለገ፣ <0>{sponsorshipEmail}ኢሜይል ይላኩ</0> ."
 
+#: src/features/applications/components/application-detail-sheet.tsx
+msgid "Attach a cover letter (PDF)"
+msgstr ""
+
 #: src/routes/agent/-components/agent-chat.tsx
 msgid "Attach files"
 msgstr "ፋይሎችን አያይዝ"
@@ -454,6 +547,14 @@ msgstr "አባሪ ተሰቅሏል።"
 #: src/routes/dashboard/settings/authentication/index.tsx
 msgid "Authentication"
 msgstr "ማረጋገጫ"
+
+#: src/features/applications/components/application-form-sheet.tsx
+msgid "Auto-fill"
+msgstr ""
+
+#: src/features/applications/components/application-form-sheet.tsx
+msgid "Auto-fill failed. Paste the description instead."
+msgstr ""
 
 #: src/routes/_home/-sections/features.tsx
 msgid "Available in multiple languages. If you would like to contribute, check out Crowdin."
@@ -511,6 +612,10 @@ msgstr "ቤንጋሊኛ"
 msgid "Blank draft"
 msgstr "ባዶ ረቂቅ"
 
+#: src/routes/dashboard/applications/index.tsx
+msgid "Board"
+msgstr ""
+
 #: src/routes/builder/$resumeId/-sidebar/right/sections/typography.tsx
 msgctxt "Body Text (paragraphs, lists, etc.)"
 msgid "Body"
@@ -541,6 +646,14 @@ msgstr "የመገንቢያ ኮማንድ ፓሌት"
 msgid "Bulgarian"
 msgstr "ቡልጋሪኛ"
 
+#: src/features/applications/components/table-view.tsx
+msgid "Bulk delete failed. Please try again."
+msgstr ""
+
+#: src/features/applications/components/table-view.tsx
+msgid "Bulk update failed. Please try again."
+msgstr ""
+
 #: src/components/input/rich-input.tsx
 msgid "Bullet List"
 msgstr "የነጥብ ዝርዝር"
@@ -551,6 +664,12 @@ msgstr "የነጥብ ዝርዝር"
 #: src/routes/_home/-sections/prefooter.tsx
 msgid "By the community, for the community."
 msgstr "በማህበረሰቡ፣ ለማህበረሰቡ።"
+
+#: src/features/applications/components/application-detail-sheet.tsx
+#: src/features/applications/components/application-form-sheet.tsx
+#: src/routes/dashboard/applications/index.tsx
+msgid "Campaign"
+msgstr ""
 
 #: src/routes/_home/-sections/faq.tsx
 msgid "Can I export my resume to PDF?"
@@ -566,6 +685,9 @@ msgstr "የየታሪክዬን ወደ PDF ልላክ እችላለሁ?"
 #: src/dialogs/auth/enable-two-factor.tsx
 #: src/dialogs/resume/sections/custom.tsx
 #: src/dialogs/resume/sections/section-item-dialog.tsx
+#: src/features/applications/components/application-detail-sheet.tsx
+#: src/features/applications/components/application-form-sheet.tsx
+#: src/features/applications/components/import-applications-sheet.tsx
 #: src/features/settings/pages/api-keys.tsx
 #: src/features/settings/pages/danger-zone.tsx
 #: src/features/settings/pages/profile.tsx
@@ -662,8 +784,13 @@ msgstr "ክብ"
 #. Clear the highlight color
 #. Clear the text color
 #: src/components/input/rich-input.tsx
+#: src/features/applications/components/table-view.tsx
 msgid "Clear"
 msgstr "አጽዳ"
+
+#: src/routes/dashboard/applications/index.tsx
+msgid "Clear filters"
+msgstr ""
 
 #: src/components/ui/combobox.tsx
 msgid "Clear selection"
@@ -698,8 +825,13 @@ msgid "Community"
 msgstr "ማህበረሰብ"
 
 #: src/dialogs/resume/sections/experience.tsx
+#: src/features/applications/components/application-form-sheet.tsx
 msgid "Company"
 msgstr "ኩባንያ"
+
+#: src/features/applications/components/table-view.tsx
+msgid "Company / Role"
+msgstr ""
 
 #: src/routes/agent/-components/agent-chat.tsx
 msgid "Compare this resume against this role URL and update keywords while keeping the voice concise and credible."
@@ -735,6 +867,10 @@ msgstr "ግንኙነት አልተሳካም"
 msgid "Connection verified — provider is ready to use."
 msgstr "ግንኙነት ተረጋግጧል - አቅራቢው ለመጠቀም ዝግጁ ነው።"
 
+#: src/features/applications/components/application-detail-sheet.tsx
+msgid "Contacts"
+msgstr ""
+
 #: src/dialogs/resume/sections/cover-letter.tsx
 #: src/dialogs/resume/sections/summary-item.tsx
 msgid "Content"
@@ -769,8 +905,13 @@ msgstr "ውይይት ተቀድቷል።"
 msgid "Conversation JSON copied."
 msgstr "ውይይት JSON ተገልብጧል።"
 
+#: src/features/applications/components/application-ai-copilot.tsx
+msgid "Copied to clipboard."
+msgstr ""
+
 #. Action button to copy two-factor backup codes to clipboard
 #: src/dialogs/auth/enable-two-factor.tsx
+#: src/features/applications/components/application-ai-copilot.tsx
 #: src/routes/agent/-components/agent-chat.tsx
 msgid "Copy"
 msgstr "ቅጂ አድርግ"
@@ -815,9 +956,42 @@ msgstr "የአቅራቢውን ግንኙነት ማረጋገጥ አልተቻለም
 msgid "Could not verify the connection. Check the API key, model, and base URL."
 msgstr "ግንኙነቱን ማረጋገጥ አልተቻለም። የኤፒአይ ቁልፉን፣ ሞዴሉን እና የመሠረት ዩአርኤሉን ያረጋግጡ።"
 
+#: src/features/applications/components/application-form-sheet.tsx
+msgid "Couldn't add the application. Please try again."
+msgstr ""
+
+#: src/features/applications/components/application-actions-menu.tsx
+#: src/features/applications/components/application-detail-sheet.tsx
+msgid "Couldn't delete the application."
+msgstr ""
+
+#: src/features/applications/components/board.tsx
+msgid "Couldn't move the application. Please try again."
+msgstr ""
+
 #: src/routes/builder/$resumeId/-components/header.tsx
 msgid "Couldn't save"
 msgstr "ማስቀመጥ አልተቻለም"
+
+#: src/features/applications/components/application-detail-sheet.tsx
+msgid "Couldn't save the note."
+msgstr ""
+
+#: src/features/applications/components/application-form-sheet.tsx
+msgid "Couldn't save your changes. Please try again."
+msgstr ""
+
+#: src/features/applications/components/application-detail-sheet.tsx
+msgid "Couldn't upload the file. Please try again."
+msgstr ""
+
+#: src/features/applications/components/insights-view.tsx
+msgid "Count by source"
+msgstr ""
+
+#: src/features/applications/components/application-detail-sheet.tsx
+msgid "Cover letter"
+msgstr ""
 
 #. Fallback title for a custom cover letter item in resume builder when recipient is empty
 #. Fallback title for a custom cover letter item in resume builder when recipient is unavailable
@@ -827,6 +1001,10 @@ msgstr "ማስቀመጥ አልተቻለም"
 #: src/routes/builder/$resumeId/-sidebar/left/sections/custom.tsx
 msgid "Cover Letter"
 msgstr "ማመልከቻ ደብዳቤ"
+
+#: src/features/applications/components/application-ai-copilot.tsx
+msgid "Cover letter draft"
+msgstr ""
 
 #. Create API key dialog submit action
 #: src/dialogs/api-key/create.tsx
@@ -849,6 +1027,10 @@ msgstr "ማመልከቻ ደብዳቤ"
 #: src/routes/dashboard/resumes/index.tsx
 msgid "Create"
 msgstr "ፍጠር"
+
+#: src/features/applications/components/application-ai-copilot.tsx
+msgid "Create a copy tuned to this job"
+msgstr ""
 
 #: src/features/auth/pages/register.tsx
 msgid "Create a new account"
@@ -952,6 +1134,11 @@ msgstr "ከአማራጮች ጋር የሥራ ማመልከቻ ሰነድ ፍጠር"
 msgid "Created"
 msgstr "የተፈጠረበት ቀን።"
 
+#. placeholder {0}: result.name
+#: src/features/applications/components/application-ai-copilot.tsx
+msgid "Created \"{0}\" and linked it to this application."
+msgstr ""
+
 #: src/dialogs/api-key/create.tsx
 msgid "Creating your API key..."
 msgstr "API ቁልፉን በመፍጠር ላይ…"
@@ -963,6 +1150,10 @@ msgstr "የየታሪክዎን መስራት በመፍጠር ላይ…"
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
 msgid "Crop picture"
 msgstr "ስዕልን ይከርክሙ"
+
+#: src/features/applications/components/import-applications-sheet.tsx
+msgid "CSV data"
+msgstr ""
 
 #: src/dialogs/auth/change-password.tsx
 msgid "Current Password"
@@ -1041,6 +1232,9 @@ msgstr "ዲግሪ"
 #. Passkey row action to remove the selected passkey
 #. Resume card context menu destructive action to remove a resume
 #. Resume card dropdown destructive action to remove a resume
+#: src/features/applications/components/application-actions-menu.tsx
+#: src/features/applications/components/application-detail-sheet.tsx
+#: src/features/applications/components/table-view.tsx
 #: src/features/settings/authentication/components/passkeys.tsx
 #: src/features/settings/pages/api-keys.tsx
 #: src/routes/agent/-components/agent-chat.tsx
@@ -1073,6 +1267,11 @@ msgstr "አቅራቢን ሰርዝ"
 #: src/routes/agent/-components/thread-sidebar.tsx
 msgid "Delete this agent thread?"
 msgstr "ይህ የወኪል ክር ይሰረዝ?"
+
+#. placeholder {0}: result.deleted
+#: src/features/applications/components/table-view.tsx
+msgid "Deleted {0} application(s)."
+msgstr ""
 
 #: src/features/settings/pages/danger-zone.tsx
 msgid "Deleting your account..."
@@ -1128,6 +1327,7 @@ msgid "Discord"
 msgstr "ዲስኮርድ"
 
 #: src/components/ui/donation-toast.tsx
+#: src/features/applications/components/application-ai-copilot.tsx
 msgid "Dismiss"
 msgstr "አሰናብት"
 
@@ -1135,6 +1335,10 @@ msgstr "አሰናብት"
 #: src/routes/builder/$resumeId/-sidebar/right/sections/information.tsx
 msgid "Documentation"
 msgstr "ሰነዶች"
+
+#: src/features/applications/components/application-detail-sheet.tsx
+msgid "Documents sent"
+msgstr ""
 
 #: src/features/auth/pages/login.tsx
 msgid "Don't have an account? <0/>"
@@ -1178,6 +1382,7 @@ msgid "Download JSON"
 msgstr "JSON አውርድ"
 
 #. Primary action in the builder header to download the resume as a PDF
+#. Primary action in the builder header to download the resume as a PDF
 #: src/features/resume/public/public-resume.tsx
 #: src/routes/agent/$threadId.tsx
 #: src/routes/builder/$resumeId/-components/header.tsx
@@ -1187,6 +1392,18 @@ msgstr "PDF አውርድ"
 #: src/routes/builder/$resumeId/-sidebar/right/sections/statistics.tsx
 msgid "Downloads"
 msgstr "እየወረዱ ነው"
+
+#: src/features/applications/components/application-ai-copilot.tsx
+msgid "Draft a cover letter"
+msgstr ""
+
+#: src/features/applications/components/application-ai-copilot.tsx
+msgid "Draft a follow-up"
+msgstr ""
+
+#: src/features/applications/components/application-ai-copilot.tsx
+msgid "Drafting failed."
+msgstr ""
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/layout/pages.tsx
 msgid "Drag and drop sections here to move them between columns"
@@ -1227,11 +1444,17 @@ msgstr "የየታሪክዎን ቅጂ በመፍጠር ላይ…"
 msgid "Dutch"
 msgstr "ደች"
 
+#: src/features/applications/components/application-form-sheet.tsx
+msgid "e.g. Spring 2026 · New Grad"
+msgstr ""
+
 #: src/routes/builder/$resumeId/-components/version-history.tsx
 msgid "Earlier versions are kept; the builder's undo history is reset."
 msgstr "ቀደምት ስሪቶች ይቀመጣሉ፤ የገንቢው የመቀልበስ ታሪክ ዳግም ተጀምሯል።"
 
 #: src/components/input/chip-input.tsx
+#: src/features/applications/components/application-actions-menu.tsx
+#: src/features/applications/components/application-detail-sheet.tsx
 #: src/routes/builder/$resumeId/route.tsx
 msgid "Edit"
 msgstr "አርትዕ"
@@ -1240,6 +1463,10 @@ msgstr "አርትዕ"
 #: src/components/input/chip-input.tsx
 msgid "Edit {chip}"
 msgstr "{chip} አርትዕ"
+
+#: src/features/applications/components/application-form-sheet.tsx
+msgid "Edit application"
+msgstr ""
 
 #. Screen reader description for the fullscreen rich-text editor dialog
 #: src/components/input/rich-input.tsx
@@ -1397,9 +1624,17 @@ msgstr "ወደ ውጪ አስመጣ"
 msgid "Export my data"
 msgstr "ውሂቤን ወደ ውጭ ላክ"
 
+#: src/features/applications/components/insights-view.tsx
+msgid "Export PNG"
+msgstr ""
+
 #: src/routes/_home/-sections/features.tsx
 msgid "Export your resume to PDF instantly, without any waiting or delays."
 msgstr "ያለምንም መዘግየት ወይም መጠበቅ፣ የስራ ልምድዎን ወዲያውኑ ወደ ፒዲኤፍ ይላኩ።"
+
+#: src/features/applications/components/insights-view.tsx
+msgid "Exported pipeline-flow.png"
+msgstr ""
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
 msgid "Failed to analyze resume."
@@ -1575,9 +1810,17 @@ msgstr "መለያዎች"
 msgid "File"
 msgstr "ፋይል"
 
+#: src/features/applications/components/application-form-sheet.tsx
+msgid "Filled in what we could from the posting."
+msgstr ""
+
 #: src/routes/dashboard/resumes/index.tsx
 msgid "Filter by"
 msgstr "መመርመሪያ በ"
+
+#: src/routes/dashboard/applications/index.tsx
+msgid "Filter tags"
+msgstr ""
 
 #: src/routes/agent/-components/agent-chat.tsx
 msgid "Find weak bullets and rewrite them with stronger outcomes, numbers, scope, and sharper verbs."
@@ -1598,6 +1841,22 @@ msgstr "ተለቅቀነት"
 #: src/dialogs/resume/sections/language.tsx
 msgid "Fluency"
 msgstr "የቋንቋ ችሎታ"
+
+#: src/features/applications/components/application-detail-sheet.tsx
+msgid "Follow-up"
+msgstr ""
+
+#: src/features/applications/components/application-form-sheet.tsx
+msgid "Follow-up date"
+msgstr ""
+
+#: src/features/applications/components/application-ai-copilot.tsx
+msgid "Follow-up draft"
+msgstr ""
+
+#: src/features/applications/components/application-form-sheet.tsx
+msgid "Follow-up note"
+msgstr ""
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/typography.tsx
 msgid "Font Family"
@@ -1653,10 +1912,18 @@ msgstr "ነፃ-ፎርም"
 msgid "French"
 msgstr "ፈረንሳይኛ"
 
+#: src/features/applications/components/application-ai-copilot.tsx
+msgid "From your resume and the posting"
+msgstr ""
+
 #. Layout editor toggle label that makes a page single-column
 #: src/routes/builder/$resumeId/-sidebar/right/sections/layout/pages.tsx
 msgid "Full Width"
 msgstr "ሙሉ ወፍር "
+
+#: src/features/applications/components/insights-view.tsx
+msgid "Full-funnel snapshot — a shareable picture of the whole search"
+msgstr ""
 
 #: src/components/input/rich-input.tsx
 msgid "Fullscreen"
@@ -1666,6 +1933,10 @@ msgstr "ሙሉ ስክሪን"
 #: src/components/input/rich-input.tsx
 msgid "Fullscreen Editor"
 msgstr "ሙሉ ማያ ገጽ አርታዒ"
+
+#: src/features/applications/components/application-ai-copilot.tsx
+msgid "Gaps:"
+msgstr ""
 
 #: src/dialogs/resume/index.tsx
 msgid "Generate a random name"
@@ -1878,6 +2149,10 @@ msgstr "የየታሪክዬን እንዴት እካፈላለሁ?"
 msgid "How do I use the API?"
 msgstr "APIን እንዴት እጠቀማለሁ?"
 
+#: src/features/applications/components/insights-view.tsx
+msgid "How far applications get, and stage-to-stage conversion"
+msgstr ""
+
 #: src/routes/_home/-sections/faq.tsx
 msgid "How is my data protected?"
 msgstr "መረጃዬ እንዴት ይጠበቃል?"
@@ -1904,11 +2179,34 @@ msgstr "የአመልካች ክትትል ስርዓት ክፍተቶችን ይለ�
 msgid "Import"
 msgstr "አስመጣ"
 
+#. placeholder {0}: importable.length
+#: src/features/applications/components/import-applications-sheet.tsx
+msgid "Import {0}"
+msgstr ""
+
 #: src/dialogs/resume/import.tsx
 #: src/routes/dashboard/resumes/-components/cards/import-card.tsx
 #: src/routes/dashboard/resumes/-components/list-view.tsx
 msgid "Import an existing resume"
 msgstr "ያለ የየታሪክ ማቅረቢያ አስመጣ"
+
+#: src/routes/dashboard/applications/index.tsx
+msgid "Import CSV"
+msgstr ""
+
+#: src/features/applications/components/import-applications-sheet.tsx
+msgid "Import failed. Check the CSV and try again."
+msgstr ""
+
+#: src/features/applications/components/import-applications-sheet.tsx
+#: src/routes/dashboard/applications/index.tsx
+msgid "Import from CSV"
+msgstr ""
+
+#. placeholder {0}: result.imported
+#: src/features/applications/components/import-applications-sheet.tsx
+msgid "Imported {0} application(s)."
+msgstr ""
 
 #: src/dialogs/resume/import.tsx
 msgid "Importing from PDF or Word requires a connected AI provider."
@@ -1941,6 +2239,10 @@ msgstr "መረጃ"
 #: src/components/input/rich-input.tsx
 msgid "Inline Code"
 msgstr "በመስመር ላይ ኮድ"
+
+#: src/routes/dashboard/applications/index.tsx
+msgid "Insights"
+msgstr ""
 
 #: src/routes/_home/-sections/features.tsx
 msgid "Instant Generation"
@@ -1985,6 +2287,14 @@ msgstr "ግዕዝ"
 #: src/libs/locale.ts
 msgid "Japanese"
 msgstr "ጃፓንኛ"
+
+#: src/features/applications/components/application-form-sheet.tsx
+msgid "Job description"
+msgstr ""
+
+#: src/features/applications/components/application-detail-sheet.tsx
+msgid "Job posting"
+msgstr ""
 
 #. Example full name placeholder on profile settings form
 #. Example full name placeholder on registration form
@@ -2048,6 +2358,7 @@ msgstr "ኮሪያኛ"
 
 #. Short field label for custom display text associated with a URL
 #: src/components/input/url-input.tsx
+#: src/features/applications/components/application-detail-sheet.tsx
 #: src/features/settings/integrations/components/ai-section.tsx
 msgid "Label"
 msgstr "መለያ"
@@ -2071,6 +2382,10 @@ msgstr "ቋንቋ"
 #: src/libs/resume/section.tsx
 msgid "Languages"
 msgstr "ቋንቋዎች"
+
+#: src/features/applications/components/table-view.tsx
+msgid "Last activity"
+msgstr ""
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
 msgid "Last analyzed on {updatedAtLabel}"
@@ -2119,6 +2434,10 @@ msgstr "ነጥሉን ባዶ ትተው ርዕሱን ወደ መጀመሪያው ሁ
 msgid "Left Align"
 msgstr "በግራ ማሰለፊያ"
 
+#: src/features/applications/components/application-form-sheet.tsx
+msgid "Let AI read the posting and fill the fields below."
+msgstr ""
+
 #: src/routes/builder/$resumeId/-sidebar/right/sections/page.tsx
 msgid "Letter"
 msgstr "መልእክት።"
@@ -2151,6 +2470,18 @@ msgstr "ብርሃን ገጽታ"
 #: src/routes/builder/$resumeId/-sidebar/right/sections/typography.tsx
 msgid "Line Height"
 msgstr "የመስመር ከፍታ"
+
+#: src/features/applications/components/application-form-sheet.tsx
+msgid "Link a Reactive Resume…"
+msgstr ""
+
+#: src/features/applications/components/application-ai-copilot.tsx
+msgid "Link a resume and add a job description (Edit) to score your fit and tailor a copy."
+msgstr ""
+
+#: src/features/applications/components/application-detail-sheet.tsx
+msgid "Linked Reactive Resume"
+msgstr ""
 
 #. Authentication provider display name in account settings
 #. Brand name label for LinkedIn social sign-in button
@@ -2202,6 +2533,8 @@ msgstr "… በመጫን ላይ"
 #: src/dialogs/resume/sections/education.tsx
 #: src/dialogs/resume/sections/experience.tsx
 #: src/dialogs/resume/sections/volunteer.tsx
+#: src/features/applications/components/application-form-sheet.tsx
+#: src/features/applications/components/table-view.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/sections/basics.tsx
 msgid "Location"
 msgstr "ቦታ"
@@ -2266,6 +2599,14 @@ msgstr "ማርጂን (አግድም)"
 msgid "Margin (Vertical)"
 msgstr "ማርጂን (አቀባዊ)"
 
+#: src/features/applications/components/application-detail-sheet.tsx
+msgid "Mark rejected"
+msgstr ""
+
+#: src/features/applications/components/application-ai-copilot.tsx
+msgid "Match scoring failed."
+msgstr ""
+
 #. Impact severity label in resume analysis suggestion card
 #: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
 msgid "Medium"
@@ -2293,6 +2634,12 @@ msgstr "ተጨማሪ የማውረጃ አማራጮች"
 msgid "Move section to another column or page"
 msgstr "ክፍልን ወደ ሌላ አምድ ወይም ገጽ ውሰድ"
 
+#: src/features/applications/components/table-view.tsx
+msgid "Move stage"
+msgstr ""
+
+#: src/features/applications/components/application-actions-menu.tsx
+#: src/features/applications/components/application-detail-sheet.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/shared/section-item.tsx
 #: src/routes/builder/$resumeId/-sidebar/right/sections/layout/pages.tsx
 msgid "Move to"
@@ -2314,6 +2661,7 @@ msgstr "በhttps:// መጀመር አለበት"
 #: src/dialogs/resume/sections/project.tsx
 #: src/dialogs/resume/sections/reference.tsx
 #: src/dialogs/resume/sections/skill.tsx
+#: src/features/applications/components/application-detail-sheet.tsx
 #: src/features/auth/pages/register.tsx
 #: src/features/settings/pages/profile.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/sections/basics.tsx
@@ -2352,6 +2700,10 @@ msgstr "አዲስ የይለፍ ቃል"
 msgid "New Section"
 msgstr "አዲስ ክፍል"
 
+#: src/features/applications/components/table-view.tsx
+msgid "New tag…"
+msgstr ""
+
 #: src/routes/agent/-components/thread-sidebar.tsx
 msgid "New thread"
 msgstr "አዲስ ክር"
@@ -2359,6 +2711,14 @@ msgstr "አዲስ ክር"
 #: src/routes/_home/-sections/features.tsx
 msgid "No Advertising, No Tracking"
 msgstr "ምንም ማስታወቂያ የለም፣ ምንም መከታተያ የለም"
+
+#: src/routes/dashboard/applications/index.tsx
+msgid "No applications match your filters."
+msgstr ""
+
+#: src/features/applications/components/insights-view.tsx
+msgid "No applications yet — add a few to see your funnel and reply rates."
+msgstr ""
 
 #. Error shown when AI import endpoint returns no parsed resume data
 #: src/dialogs/resume/import.tsx
@@ -2377,14 +2737,26 @@ msgstr "ምንም ቀዳሚ ውሂብ የለም"
 msgid "No results found."
 msgstr "ምንም ውጤት አልተገኘም።"
 
+#: src/features/applications/components/application-detail-sheet.tsx
+msgid "No resume linked."
+msgstr ""
+
 #: src/routes/dashboard/resumes/-components/grid-view.tsx
 #: src/routes/dashboard/resumes/-components/list-view.tsx
 msgid "No resumes match your search."
 msgstr "ከፍለጋዎ ጋር የሚዛመድ ምንም የስራ ልምድ ማስረጃዎች የሉም።"
 
+#: src/features/applications/components/application-form-sheet.tsx
+msgid "No resumes yet."
+msgstr ""
+
 #: src/routes/builder/$resumeId/-components/version-history.tsx
 msgid "No saved versions yet."
 msgstr "እስካሁን ምንም የተቀመጡ ስሪቶች የሉም።"
+
+#: src/features/applications/components/insights-view.tsx
+msgid "No source data yet."
+msgstr ""
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/custom-styles.tsx
 msgid "No style rules yet."
@@ -2406,6 +2778,7 @@ msgstr "ኖርዌጂያንኛ"
 msgid "Not connected"
 msgstr "አልተገናኘም"
 
+#: src/features/applications/components/application-form-sheet.tsx
 #: src/libs/resume/section.tsx
 msgid "Notes"
 msgstr "ማስታወሻዎች"
@@ -2430,6 +2803,10 @@ msgstr "የቀጣይ ጥገና"
 #: src/routes/builder/$resumeId/-sidebar/right/sections/layout/pages.tsx
 msgid "Only applies when the section fits on a single page."
 msgstr "ክፍሉ በአንድ ገጽ ላይ ሲገባ ብቻ ይተገበራል።"
+
+#: src/features/applications/components/import-applications-sheet.tsx
+msgid "Only the first {MAX_IMPORT} rows import at once — {overflow} left out. Split the file to import the rest."
+msgstr ""
 
 #. Resume card context menu action to open the resume editor
 #. Resume card dropdown action to open the resume editor
@@ -2578,6 +2955,18 @@ msgstr "የይለፍ ቃል ጥበቃ ተሰናክሏል።"
 msgid "Password protection has been enabled."
 msgstr "የይለፍ ቃል ጥበቃ ተነስቷል።"
 
+#: src/features/applications/components/application-form-sheet.tsx
+msgid "Paste a job posting URL"
+msgstr ""
+
+#: src/features/applications/components/import-applications-sheet.tsx
+msgid "Paste rows or upload a .csv. We map columns like Company, Role, Stage, Salary, Source and Tags."
+msgstr ""
+
+#: src/features/applications/components/application-form-sheet.tsx
+msgid "Paste the posting — powers AI match scoring and tailoring."
+msgstr ""
+
 #: src/routes/agent/-components/agent-chat.tsx
 msgid "Patch applied"
 msgstr "ጥገና ተተግብሯል"
@@ -2636,6 +3025,22 @@ msgstr "አዶ ይምረጡ"
 msgid "Picture"
 msgstr "ፎቶ"
 
+#: src/features/applications/components/insights-view.tsx
+msgid "Pipeline flow"
+msgstr ""
+
+#: src/features/applications/components/insights-view.tsx
+msgid "Pipeline funnel"
+msgstr ""
+
+#: src/features/applications/components/insights-view.tsx
+msgid "Pipeline health across all applications"
+msgstr ""
+
+#: src/features/applications/components/insights-view.tsx
+msgid "Pipeline health for campaign “{campaign}”"
+msgstr ""
+
 #: src/features/auth/pages/reset-password.tsx
 msgid "Please enter a new password for your account"
 msgstr "እባክዎ ለመለያዎ አዲስ የይለፍ ቃል ያስገቡ"
@@ -2651,6 +3056,10 @@ msgstr "ሊያገናኙት የሚፈልጉትን URL እባክዎን ያስገ�
 #: src/components/ui/donation-toast.tsx
 msgid "Please support the project"
 msgstr "እባክዎን ፕሮጀክቱን ይደግፉ"
+
+#: src/features/applications/components/application-detail-sheet.tsx
+msgid "Please upload a PDF file."
+msgstr ""
 
 #: src/features/resume/export/use-resume-export.ts
 msgid "Please wait while your PDF is being generated..."
@@ -2774,6 +3183,10 @@ msgstr "ህትመቶች"
 msgid "Publisher"
 msgstr "አታሚ"
 
+#: src/features/applications/components/application-ai-copilot.tsx
+msgid "Re-score"
+msgstr ""
+
 #: src/routes/_home/-sections/header.tsx
 msgid "Reactive Resume - Go to homepage"
 msgstr "Reactive Resume - ወደ መነሻ ገጽ ሂድ"
@@ -2817,6 +3230,10 @@ msgstr "ምላሽ ሰጪ የስራ ልምድ v<0>{__APP_VERSION__}</0>"
 msgid "Reactive Resume v4 (JSON)"
 msgstr "Reactive Resume v4 (JSON)"
 
+#: src/features/applications/components/application-form-sheet.tsx
+msgid "Reading…"
+msgstr ""
+
 #: src/dialogs/resume/sections/cover-letter.tsx
 msgid "Recipient"
 msgstr "ተቀባይ"
@@ -2839,6 +3256,10 @@ msgstr "ድገም"
 msgid "References"
 msgstr "ማመልከቻዎች"
 
+#: src/features/applications/components/application-form-sheet.tsx
+msgid "Referred by…, things to emphasize, etc."
+msgstr ""
+
 #: src/features/settings/authentication/components/passkeys.tsx
 msgid "Register New Device"
 msgstr "አዲስ መሣሪያ መመዝገብ"
@@ -2855,6 +3276,14 @@ msgstr "አስወግድ"
 #: src/components/input/chip-input.tsx
 msgid "Remove {chip}"
 msgstr "{chip} አስወግድ"
+
+#: src/features/applications/components/application-detail-sheet.tsx
+msgid "Remove contact"
+msgstr ""
+
+#: src/features/applications/components/application-detail-sheet.tsx
+msgid "Remove cover letter"
+msgstr ""
 
 #: src/routes/builder/$resumeId/-sidebar/left/sections/custom-fields.tsx
 msgid "Remove custom field"
@@ -2954,6 +3383,10 @@ msgstr "የሥራ ማመልከቻ ሰነድ ትንተና ተጠናቋል።"
 msgid "Resume content"
 msgstr "የሪቪው ይዘት"
 
+#: src/features/applications/components/application-card.tsx
+msgid "Resume linked"
+msgstr ""
+
 #: src/routes/builder/$resumeId/-components/header.tsx
 msgid "Resume options"
 msgstr "የሪቪው አማራጮች"
@@ -2961,6 +3394,10 @@ msgstr "የሪቪው አማራጮች"
 #: src/routes/agent/-components/agent-chat.tsx
 msgid "Resume patch"
 msgstr "የስራ ማጠቃለያ ልጣፍ"
+
+#: src/features/applications/components/application-form-sheet.tsx
+msgid "Resume used"
+msgstr ""
 
 #: src/features/command-palette/pages/navigation.tsx
 #: src/features/command-palette/pages/resumes.tsx
@@ -2990,6 +3427,14 @@ msgstr "ይህንን የስራ ልምድ ማስረጃ እንደገና ይፃፉ�
 msgid "Right Align"
 msgstr "በቀኝ ማሰለፊያ"
 
+#: src/features/applications/components/application-detail-sheet.tsx
+msgid "Role (optional)"
+msgstr ""
+
+#: src/features/applications/components/application-form-sheet.tsx
+msgid "Role / title"
+msgstr ""
+
 #: src/dialogs/resume/sections/experience.tsx
 msgid "Role Progression"
 msgstr "የሚና እድገት"
@@ -3018,6 +3463,15 @@ msgstr "የውጤት ካርድ፣ ጥንካሬዎች እና ቅድሚያ የተ�
 msgid "Russian"
 msgstr "ሩስኛ"
 
+#: src/features/applications/components/application-detail-sheet.tsx
+#: src/features/applications/components/table-view.tsx
+msgid "Salary"
+msgstr ""
+
+#: src/features/applications/components/application-form-sheet.tsx
+msgid "Salary range"
+msgstr ""
+
 #. Passkey rename prompt confirm action in authentication settings
 #: src/features/settings/authentication/components/passkeys.tsx
 msgid "Save"
@@ -3030,6 +3484,10 @@ msgstr "አስቀምጥ እና አቅራቢውን ሞክር"
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
 msgid "Save & Upload"
 msgstr "አስቀምጥ እና ስቀል"
+
+#: src/features/applications/components/application-form-sheet.tsx
+msgid "Save changes"
+msgstr ""
 
 #: src/dialogs/resume/index.tsx
 #: src/dialogs/resume/sections/award.tsx
@@ -3067,13 +3525,25 @@ msgstr "በታች ያለውን QR ኮድ በሚፈልጉት የማረጋገጫ �
 msgid "School"
 msgstr "ት/ቤት"
 
+#: src/features/applications/components/application-ai-copilot.tsx
+msgid "Score my fit"
+msgstr ""
+
 #: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
 msgid "Scorecard"
 msgstr "የውጤት ካርድ"
 
+#: src/features/applications/components/application-ai-copilot.tsx
+msgid "Scoring your fit…"
+msgstr ""
+
 #: src/routes/dashboard/-components/sidebar.tsx
 msgid "Search"
 msgstr "ፈልግ"
+
+#: src/routes/dashboard/applications/index.tsx
+msgid "Search applications…"
+msgstr ""
 
 #. Accessible label for command palette search input
 #: src/features/command-palette/index.tsx
@@ -3116,6 +3586,15 @@ msgstr "የክፍል አማራጮች"
 msgid "Section Type"
 msgstr "የክፍል ዓይነት"
 
+#: src/features/applications/components/application-ai-copilot.tsx
+msgid "See how this resume matches the posting"
+msgstr ""
+
+#. placeholder {0}: app.company
+#: src/features/applications/components/table-view.tsx
+msgid "Select {0}"
+msgstr ""
+
 #: src/routes/agent/-components/new-thread-setup.tsx
 msgid "Select a resume"
 msgstr "የሥራ ልምድ ማስረጃ ይምረጡ"
@@ -3123,6 +3602,10 @@ msgstr "የሥራ ልምድ ማስረጃ ይምረጡ"
 #: src/routes/agent/index.tsx
 msgid "Select a thread"
 msgstr "ክር ይምረጡ"
+
+#: src/features/applications/components/table-view.tsx
+msgid "Select all"
+msgstr ""
 
 #: src/routes/agent/-components/new-thread-setup.tsx
 msgid "Select an agent model"
@@ -3135,6 +3618,14 @@ msgstr "የAI አቅራቢ ይምረጡ"
 #: src/components/ui/combobox.tsx
 msgid "Select..."
 msgstr "ምረጥ..."
+
+#: src/features/applications/components/application-form-sheet.tsx
+msgid "Select…"
+msgstr ""
+
+#: src/features/applications/components/table-view.tsx
+msgid "selected"
+msgstr ""
 
 #: src/routes/_home/-sections/features.tsx
 msgid "Self-Host with Docker"
@@ -3218,6 +3709,11 @@ msgstr "ማካፈል"
 msgid "Show"
 msgstr "አሳይ"
 
+#. placeholder {0}: Math.min(remaining, COLUMN_PAGE_SIZE)
+#: src/features/applications/components/board.tsx
+msgid "Show {0} more"
+msgstr ""
+
 #: src/dialogs/resume/sections/award.tsx
 #: src/dialogs/resume/sections/certification.tsx
 #: src/dialogs/resume/sections/education.tsx
@@ -3251,6 +3747,12 @@ msgstr "የይለፍ ቃል አሳይ"
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
 msgid "Show picture"
 msgstr "ስዕል አሳይ"
+
+#. placeholder {0}: rows.length
+#. placeholder {1}: applications.length
+#: src/features/applications/components/table-view.tsx
+msgid "Showing {0} of {1}"
+msgstr ""
 
 #. Layout editor column label for the secondary sidebar area
 #: src/routes/builder/$resumeId/-sidebar/right/sections/layout/pages.tsx
@@ -3361,6 +3863,8 @@ msgstr "የሆነ ችግር ተፈጥሯል"
 msgid "Something went wrong while analyzing your resume."
 msgstr "የሥራ ማመልከቻ ሰነድዎን በመተንተን ላይ ሳሉ ችግኝ ተፈጥሯል።"
 
+#: src/features/applications/components/application-actions-menu.tsx
+#: src/features/applications/components/application-detail-sheet.tsx
 #: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
 msgid "Something went wrong. Please try again."
 msgstr "የተሳሳተ ነገር ተፈጥሯል። እባክዎን ደግመው ይሞክሩ።"
@@ -3368,6 +3872,12 @@ msgstr "የተሳሳተ ነገር ተፈጥሯል። እባክዎን ደግመ�
 #: src/routes/dashboard/resumes/index.tsx
 msgid "Sort by"
 msgstr "መደብ በ"
+
+#: src/features/applications/components/application-detail-sheet.tsx
+#: src/features/applications/components/application-form-sheet.tsx
+#: src/features/applications/components/table-view.tsx
+msgid "Source"
+msgstr ""
 
 #: src/routes/_home/-sections/footer.tsx
 #: src/routes/builder/$resumeId/-sidebar/right/sections/information.tsx
@@ -3399,6 +3909,11 @@ msgstr "አከፋፈልዎች"
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
 msgid "Square"
 msgstr "መስቀል"
+
+#: src/features/applications/components/application-form-sheet.tsx
+#: src/features/applications/components/table-view.tsx
+msgid "Stage"
+msgstr ""
 
 #: src/components/input/github-stars-button.tsx
 msgid "Star us on GitHub (opens in new tab)"
@@ -3459,6 +3974,10 @@ msgstr "ጥንካሬዎች"
 msgid "Strike"
 msgstr "መሰረዣ"
 
+#: src/features/applications/components/application-ai-copilot.tsx
+msgid "Strong fit"
+msgstr ""
+
 #: src/routes/_home/-sections/footer.tsx
 msgid "Subreddit"
 msgstr "ሰብሬዲት"
@@ -3505,7 +4024,12 @@ msgstr "ወደ {0} አብነት ተቀይሯል።"
 msgid "Synced changes made in another tab."
 msgstr "በሌላ ትር ላይ የተደረጉ ለውጦች ተመሳስለዋል።"
 
+#: src/routes/dashboard/applications/index.tsx
+msgid "Table"
+msgstr ""
+
 #: src/dialogs/resume/index.tsx
+#: src/features/applications/components/table-view.tsx
 msgid "Tags"
 msgstr "መለያ መለያዎች"
 
@@ -3513,9 +4037,17 @@ msgstr "መለያ መለያዎች"
 msgid "Tags can be used to categorize your resume by keywords."
 msgstr "መለያዎች በአርእስት መሰረት የየታሪክዎን ማቅረቢያ ለመመደብ ሊውሉ ይችላሉ።"
 
+#: src/features/applications/components/application-ai-copilot.tsx
+msgid "Tailor my resume"
+msgstr ""
+
 #: src/routes/agent/-components/agent-chat.tsx
 msgid "Tailor this resume to a product manager job description and emphasize roadmap ownership, stakeholder communication, and measurable launch outcomes."
 msgstr "ይህንን የስራ ልምድ ማስረጃ ከምርት አስተዳዳሪ የስራ መግለጫ ጋር ያዋህዱ እና የመንገድ ካርታ ባለቤትነትን፣ የባለድርሻ አካላትን ግንኙነት እና ሊለኩ የሚችሉ የማስጀመሪያ ውጤቶችን ያጎሉ።"
+
+#: src/features/applications/components/application-ai-copilot.tsx
+msgid "Tailoring failed."
+msgstr ""
 
 #: src/libs/locale.ts
 msgid "Tamil"
@@ -3753,6 +4285,10 @@ msgstr "የክህሎት ክፍሉን እንደ ቁልፍ ቃል ቆሻሻ ከማ
 msgid "Timelapse demonstration of building a resume with Reactive Resume"
 msgstr "በ Reactive Resume የታሪክ ማቅረቢያ መገንባትን የሚያሳይ የጊዜ መጠን ማሳያ ቪዲዮ"
 
+#: src/features/applications/components/application-detail-sheet.tsx
+msgid "Timeline & activity"
+msgstr ""
+
 #: src/dialogs/api-key/create.tsx
 msgid "Tip: Give your API key a name, corresponding to the purpose of the key, to help you identify it later."
 msgstr "ምክር፡ ለ API ቁልፍዎ በኋላ በቀላሉ እንዲለዩት ከተጠቃሚነቱ ጋር የተያያዘ ስም ይስጡት።"
@@ -3798,6 +4334,14 @@ msgstr "የቀኝ የጎን አሞሌን ቀያይር"
 #: src/routes/agent/-components/agent-chat.tsx
 msgid "Toggle threads"
 msgstr "ክሮችን ቀያይር"
+
+#: src/features/applications/components/application-form-sheet.tsx
+msgid "Track a job you're applying to and link the resume you sent."
+msgstr ""
+
+#: src/routes/dashboard/applications/index.tsx
+msgid "Track your first application"
+msgstr ""
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/statistics.tsx
 msgid "Track your resume's views and downloads"
@@ -3896,6 +4440,11 @@ msgstr "ታይፖግራፊ"
 #: src/libs/locale.ts
 msgid "Ukrainian"
 msgstr "ዩክሬንኛ"
+
+#: src/features/applications/components/application-actions-menu.tsx
+#: src/features/applications/components/application-detail-sheet.tsx
+msgid "Unarchive"
+msgstr ""
 
 #: src/components/input/rich-input.tsx
 msgid "Underline"
@@ -4011,6 +4560,10 @@ msgstr "የፕሮጀክት ነጥቦችን በማዘመን የአመራር ገ�
 msgid "Update Resume"
 msgstr "የየታሪክ ማቅረቢያን አዘምን"
 
+#: src/features/applications/components/application-form-sheet.tsx
+msgid "Update this application's details."
+msgstr ""
+
 #: src/dialogs/auth/change-password.tsx
 msgid "Update your password"
 msgstr "የይለፍ ቃልዎን አዘምኑ"
@@ -4023,6 +4576,10 @@ msgstr "የይለፍ ቃልዎን በመዘመን ላይ…"
 msgid "Updating your resume..."
 msgstr "የየታሪክዎን በመዘመን ላይ…"
 
+#: src/features/applications/components/import-applications-sheet.tsx
+msgid "Upload .csv"
+msgstr ""
+
 #: src/routes/agent/-components/agent-chat.tsx
 msgid "Upload attachments"
 msgstr "አባሪዎችን ስቀል"
@@ -4031,9 +4588,17 @@ msgstr "አባሪዎችን ስቀል"
 msgid "Upload picture"
 msgstr "ምስል ስቀል"
 
+#: src/features/applications/components/application-detail-sheet.tsx
+msgid "Uploading cover letter…"
+msgstr ""
+
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
 msgid "Uploading picture…"
 msgstr "ፎቶ በመስቀል ላይ…"
+
+#: src/features/applications/components/application-detail-sheet.tsx
+msgid "Uploading…"
+msgstr ""
 
 #. Form field label for the generated public resume link in sharing settings
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
@@ -4049,6 +4614,10 @@ msgstr "ተጠቀም"
 #: src/routes/builder/$resumeId/-sidebar/right/sections/design.tsx
 msgid "Use color {color}"
 msgstr "{color} ቀለም ተጠቀም"
+
+#: src/features/applications/components/import-applications-sheet.tsx
+msgid "Use sample"
+msgstr ""
 
 #. Label for username input on registration form
 #: src/dialogs/resume/sections/profile.tsx
@@ -4173,6 +4742,14 @@ msgstr "በአዲሱ ስሪት ምን አዲስ ነገር አለ?"
 msgid "When locked, the resume cannot be updated or deleted."
 msgstr "ሲቆለፍ የየታሪክዎን ማቅረቢያ ማዘመን ወይም ማስወገድ አይቻልም።"
 
+#: src/features/applications/components/insights-view.tsx
+msgid "Where applications come from"
+msgstr ""
+
+#: src/features/applications/components/insights-view.tsx
+msgid "Where your applications went"
+msgstr ""
+
 #: src/features/settings/integrations/components/ai-section.tsx
 msgid "Work OpenAI"
 msgstr "ክፍት የአይአይ ስራ"
@@ -4180,6 +4757,10 @@ msgstr "ክፍት የአይአይ ስራ"
 #: src/routes/agent/-components/agent-chat.tsx
 msgid "Working…"
 msgstr "በመስራት ላይ…"
+
+#: src/features/applications/components/application-ai-copilot.tsx
+msgid "Worth a shot"
+msgstr ""
 
 #: src/routes/_home/-sections/footer.tsx
 msgid "X (Twitter)"
@@ -4308,4 +4889,3 @@ msgstr "አጉር"
 #: src/libs/locale.ts
 msgid "Zulu"
 msgstr "ዙሉ"
-

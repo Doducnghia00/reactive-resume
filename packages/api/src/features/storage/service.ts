@@ -55,9 +55,21 @@ const DEFAULT_CONTENT_TYPE = "application/octet-stream";
 
 const IMAGE_MIME_TYPES = ["image/gif", "image/png", "image/jpeg", "image/webp"];
 
-function buildPictureKey(userId: string): string {
-	const timestamp = Date.now();
-	return `uploads/${userId}/pictures/${timestamp}.jpeg`;
+const EXTENSION_BY_CONTENT_TYPE: Record<string, string> = {
+	"image/jpeg": "jpeg",
+	"image/png": "png",
+	"image/webp": "webp",
+	"image/gif": "gif",
+	"application/pdf": "pdf",
+};
+
+// Derive the stored key's extension from the content type so the static handler serves each
+// file correctly instead of mislabeling it. Images normally arrive as JPEG (sharp), but with
+// FLAG_DISABLE_IMAGE_PROCESSING they keep their original type — hence all image types are
+// mapped, not just JPEG. Non-image uploads (e.g. a cover-letter PDF) get their real extension.
+function buildFileKey(userId: string, contentType: string): string {
+	const extension = EXTENSION_BY_CONTENT_TYPE[contentType] ?? "bin";
+	return `uploads/${userId}/pictures/${Date.now()}.${extension}`;
 }
 
 function buildPublicUrl(path: string): string {
@@ -337,9 +349,8 @@ interface UploadFileResult {
 	key: string;
 }
 
-// ponytail: only "picture" uploads exist in production; screenshot/pdf types were speculative dead code
 export async function uploadFile(input: UploadFileInput): Promise<UploadFileResult> {
-	const key = buildPictureKey(input.userId);
+	const key = buildFileKey(input.userId, input.contentType);
 	await getStorageService().write({ key, data: input.data, contentType: input.contentType });
 	return { key, url: buildPublicUrl(key) };
 }

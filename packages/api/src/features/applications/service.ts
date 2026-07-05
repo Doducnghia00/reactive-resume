@@ -26,6 +26,8 @@ type EditableFields = {
 	jobDescription?: string | null | undefined;
 	campaign?: string | null | undefined;
 	notes?: string | null | undefined;
+	coverLetterUrl?: string | null | undefined;
+	coverLetterName?: string | null | undefined;
 	followUpAt?: Date | null | undefined;
 	followUpNote?: string | null | undefined;
 	contacts?: Contact[] | undefined;
