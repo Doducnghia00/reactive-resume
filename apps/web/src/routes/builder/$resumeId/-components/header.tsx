@@ -27,7 +27,12 @@ import {
 	DropdownMenuTrigger,
 } from "@reactive-resume/ui/components/dropdown-menu";
 import { useDialogStore } from "@/dialogs/store";
-import { useCurrentResume, usePatchResume, useResumeStore } from "@/features/resume/builder/draft";
+import {
+	useCurrentBuilderResumeSelector,
+	useCurrentResume,
+	usePatchResume,
+	useResumeStore,
+} from "@/features/resume/builder/draft";
 import { ResumeDownloadDialog } from "@/features/resume/export/download-dialog";
 import { useConfirm } from "@/hooks/use-confirm";
 import { getResumeErrorMessage } from "@/libs/error-message";
@@ -37,9 +42,11 @@ import { BuilderAiAssistant } from "./ai-assistant";
 import { BuilderVersionHistory } from "./version-history";
 
 export function BuilderHeader() {
-	const resume = useCurrentResume();
-	const name = resume.name;
-	const isLocked = resume.isLocked;
+	// Subscribe to only the metadata fields this header renders. Selecting the whole resume re-renders
+	// the header on every keystroke (immer replaces the resume reference on each content edit).
+	const name = useCurrentBuilderResumeSelector((resume) => resume.name);
+	const isLocked = useCurrentBuilderResumeSelector((resume) => resume.isLocked);
+	const resumeId = useCurrentBuilderResumeSelector((resume) => resume.id);
 	const { toggleSidebar } = useBuilderSidebar();
 
 	// Equal-width flex-1 side groups keep the center title group truly centered regardless of the
@@ -77,8 +84,8 @@ export function BuilderHeader() {
 				<h2 className="min-w-0 truncate font-medium">{name}</h2>
 				{isLocked && <LockSimpleIcon className="ms-2 text-muted-foreground" />}
 				<SaveStatusIndicator />
-				<BuilderAiAssistant resumeId={resume.id} />
-				<BuilderVersionHistory resumeId={resume.id} />
+				<BuilderAiAssistant resumeId={resumeId} />
+				<BuilderVersionHistory resumeId={resumeId} />
 				<BuilderHeaderDropdown />
 			</div>
 

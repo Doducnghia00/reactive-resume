@@ -36,6 +36,11 @@ function useColorSectionForm(colors: ColorValues, persist: (data: ColorValues) =
 	const form = useAppForm({
 		defaultValues: colors,
 		validators: { onChange: colorDesignSchema },
+		listeners: {
+			onChange: ({ formApi }) => {
+				persist(formApi.state.values);
+			},
+		},
 		onSubmit: ({ value }) => {
 			persist(value);
 		},
@@ -59,10 +64,6 @@ function ColorSectionForm() {
 
 	const form = useColorSectionForm(colors, persist);
 
-	const handleAutoSave = () => {
-		persist(form.state.values);
-	};
-
 	return (
 		<form
 			className="space-y-4"
@@ -85,7 +86,6 @@ function ColorSectionForm() {
 								active={color === field.state.value}
 								onSelect={(color) => {
 									field.handleChange(color as string);
-									handleAutoSave();
 								}}
 							/>
 						))}
@@ -93,20 +93,9 @@ function ColorSectionForm() {
 				)}
 			</form.Field>
 
-			<ColorFormField
-				form={form}
-				name="primary"
-				label={<Trans>Primary Color</Trans>}
-				controlled
-				handleAutoSave={handleAutoSave}
-			/>
-			<ColorFormField form={form} name="text" label={<Trans>Text Color</Trans>} handleAutoSave={handleAutoSave} />
-			<ColorFormField
-				form={form}
-				name="background"
-				label={<Trans>Background Color</Trans>}
-				handleAutoSave={handleAutoSave}
-			/>
+			<ColorFormField form={form} name="primary" label={<Trans>Primary Color</Trans>} controlled />
+			<ColorFormField form={form} name="text" label={<Trans>Text Color</Trans>} />
+			<ColorFormField form={form} name="background" label={<Trans>Background Color</Trans>} />
 		</form>
 	);
 }
@@ -116,10 +105,9 @@ type ColorFormFieldProps = {
 	name: keyof ColorValues;
 	label: ReactNode;
 	controlled?: boolean;
-	handleAutoSave: () => void;
 };
 
-function ColorFormField({ form, name, label, controlled, handleAutoSave }: ColorFormFieldProps) {
+function ColorFormField({ form, name, label, controlled }: ColorFormFieldProps) {
 	return (
 		<form.Field name={name}>
 			{(field) => (
@@ -130,7 +118,6 @@ function ColorFormField({ form, name, label, controlled, handleAutoSave }: Color
 							{...(controlled ? { value: field.state.value } : { defaultValue: field.state.value })}
 							onChange={(color) => {
 								field.handleChange(color);
-								handleAutoSave();
 							}}
 						/>
 						<FormControl
@@ -141,7 +128,6 @@ function ColorFormField({ form, name, label, controlled, handleAutoSave }: Color
 									onBlur={field.handleBlur}
 									onChange={(e) => {
 										field.handleChange(e.target.value);
-										handleAutoSave();
 									}}
 								/>
 							}
@@ -235,15 +221,16 @@ function LevelSectionForm() {
 	const form = useAppForm({
 		defaultValues: levelDesign,
 		validators: { onChange: levelDesignSchema },
+		listeners: {
+			onChange: ({ formApi }) => {
+				persist(formApi.state.values);
+			},
+		},
 		onSubmit: ({ value }) => {
 			persist(value);
 		},
 	});
 	useSyncFormValues(form, levelDesign);
-
-	const handleAutoSave = () => {
-		persist(form.state.values);
-	};
 
 	const previewType = useStore(form.store, (s) => s.values.type);
 	const previewIcon = useStore(form.store, (s) => s.values.icon);
@@ -296,7 +283,6 @@ function LevelSectionForm() {
 										value={field.state.value}
 										onChange={(value) => {
 											field.handleChange(value);
-											handleAutoSave();
 										}}
 									/>
 								}
@@ -318,7 +304,6 @@ function LevelSectionForm() {
 										onValueChange={(value) => {
 											if (!value) return;
 											field.handleChange(value as LevelType);
-											handleAutoSave();
 										}}
 									/>
 								}

@@ -28,7 +28,11 @@ import {
 } from "@reactive-resume/ui/components/dropdown-menu";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@reactive-resume/ui/components/tooltip";
 import { cn } from "@reactive-resume/utils/style";
-import { isEditableElementFocused, useCurrentResume, useResumeStore } from "@/features/resume/builder/draft";
+import {
+	isEditableElementFocused,
+	useCurrentBuilderResumeSelector,
+	useResumeStore,
+} from "@/features/resume/builder/draft";
 import { authClient } from "@/libs/auth/client";
 
 type BuilderDockProps = {
@@ -38,7 +42,9 @@ type BuilderDockProps = {
 
 export function BuilderDock({ pageLayout, onTogglePageLayout }: BuilderDockProps) {
 	const { data: session } = authClient.useSession();
-	const resume = useCurrentResume();
+	// Narrow slices: selecting the whole resume re-renders the dock on every keystroke.
+	const resumeSlug = useCurrentBuilderResumeSelector((resume) => resume.slug);
+	const resumeId = useCurrentBuilderResumeSelector((resume) => resume.id);
 	const navigate = useNavigate();
 
 	const [_, copyToClipboard] = useCopyToClipboard();
@@ -67,9 +73,9 @@ export function BuilderDock({ pageLayout, onTogglePageLayout }: BuilderDockProps
 	});
 
 	const publicUrl = useMemo(() => {
-		if (!session?.user.username || !resume?.slug) return "";
-		return `${window.location.origin}/${session.user.username}/${resume.slug}`;
-	}, [session?.user.username, resume?.slug]);
+		if (!session?.user.username || !resumeSlug) return "";
+		return `${window.location.origin}/${session.user.username}/${resumeSlug}`;
+	}, [session?.user.username, resumeSlug]);
 
 	const onCopyUrl = useCallback(async () => {
 		await copyToClipboard(publicUrl);
@@ -100,8 +106,8 @@ export function BuilderDock({ pageLayout, onTogglePageLayout }: BuilderDockProps
 					icon={ChatCircleDotsIcon}
 					title={t`Open AI agent`}
 					onClick={() => {
-						if (!resume) return;
-						void navigate({ to: "/agent/new", search: { resumeId: resume.id } });
+						if (!resumeId) return;
+						void navigate({ to: "/agent/new", search: { resumeId } });
 					}}
 				/>
 				<div className="mx-1 h-8 w-px bg-border" />
