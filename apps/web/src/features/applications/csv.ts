@@ -52,7 +52,7 @@ export function parseCsv(input: string): string[][] {
 	return rows.filter((r) => r.some((cell) => cell.trim() !== ""));
 }
 
-export type ParsedApplication = {
+type ParsedApplication = {
 	company: string;
 	role: string;
 	status?: ApplicationStatus;

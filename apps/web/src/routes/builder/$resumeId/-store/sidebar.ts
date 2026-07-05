@@ -6,7 +6,7 @@ import { create } from "zustand/react";
 
 type PanelImperativeHandle = ReturnType<typeof usePanelRef>;
 
-export const BUILDER_LAYOUT_COOKIE_NAME = "builder_layout";
+const BUILDER_LAYOUT_COOKIE_NAME = "builder_layout";
 
 export type BuilderLayout = {
 	left: number;
