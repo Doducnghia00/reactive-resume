@@ -17,20 +17,27 @@ export function Hero() {
 			<Spotlight />
 
 			<m.div
-				className="will-change-[transform,opacity]"
+				className="w-full will-change-[transform,opacity]"
 				initial={{ opacity: 0, y: 100 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 1.1, ease: "easeOut" }}
 			>
-				<CometCard glareOpacity={0} className="relative -mb-12 3xl:max-w-7xl max-w-4xl px-8 md:-mb-24 md:px-12 lg:px-0">
+				<CometCard
+					glareOpacity={0}
+					className="relative mx-auto -mb-12 3xl:max-w-7xl max-w-4xl px-8 md:-mb-24 md:px-12 lg:px-0"
+				>
 					<video
 						loop
 						muted
 						autoPlay
 						playsInline
+						width={1146}
+						height={720}
 						src="/videos/timelapse.mp4"
 						aria-label={t`Timelapse demonstration of building a resume with Reactive Resume`}
-						className="pointer-events-none size-full rounded-md border object-cover"
+						// Reserve the intrinsic aspect ratio so the box height is known before the video
+						// metadata loads — otherwise it reflows the centered hero column and causes CLS (~0.10).
+						className="pointer-events-none aspect-[1146/720] w-full rounded-md border object-cover"
 					/>
 
 					<div
