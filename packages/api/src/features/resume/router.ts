@@ -1,6 +1,7 @@
 import { analysisRouter } from "./analysis";
 import { crudRouter } from "./crud";
 import { updatesRouter } from "./event-router";
+import { importAndRenderResumeProcedure } from "./import-and-render";
 import { sharingRouter } from "./sharing";
 import { resumeStatisticsRouter } from "./statistics";
 import { tagsRouter } from "./tags";
@@ -17,6 +18,7 @@ export const resumeRouter = {
 	getBySlug: sharingRouter.getBySlug,
 	create: crudRouter.create,
 	import: crudRouter.import,
+	importAndRender: importAndRenderResumeProcedure,
 	update: crudRouter.update,
 	patch: crudRouter.patch,
 	setLocked: crudRouter.setLocked,

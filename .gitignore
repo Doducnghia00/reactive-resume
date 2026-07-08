@@ -1,6 +1,7 @@
 # Dependencies
 node_modules
 .pnpm-store
+.local-tools
 
 # Build Outputs
 dist
@@ -68,3 +69,5 @@ packages/ui/.ds-compiled.css
 packages/ui/.ds-tw-raw.css
 packages/ui/dist/
 i18n.cache
+
+run-local-*
