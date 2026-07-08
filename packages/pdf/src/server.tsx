@@ -1,7 +1,7 @@
 import type { ResumeData } from "@reactive-resume/schema/resume/data";
 import type { Template } from "@reactive-resume/schema/templates";
 import type { SectionTitleResolver } from "./section-title";
-import { createElement } from "react";
+import React, { createElement } from "react";
 import { renderToBuffer } from "#react-pdf-renderer";
 import { ResumeDocument } from "./document";
 
@@ -11,6 +11,9 @@ type CreateResumePdfFileOptions = {
 	template?: Template | undefined;
 	resolveSectionTitle?: SectionTitleResolver | undefined;
 };
+
+// FORK NOTE: local/server source consumption can execute preserved JSX as classic React.createElement.
+(globalThis as typeof globalThis & { React?: typeof React }).React ??= React;
 
 export const createResumePdfFile = async ({
 	data,

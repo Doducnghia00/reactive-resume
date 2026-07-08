@@ -9,6 +9,10 @@ The server does not parse markdown, infer fields, or do stateless rendering. It 
 `ResumeData`, stores it as a new resume under the account resolved from `x-api-key`, and returns a short-lived
 PDF download URL.
 
+The `data` object should be the same shape as the JSON exported from the Reactive Resume web UI. Agents should treat a
+good exported resume JSON as the canonical target format and intentionally fill each section, instead of doing a blind
+markdown-to-fields conversion.
+
 ## Endpoint
 
 When using OpenAPI over HTTP:
@@ -39,16 +43,19 @@ resume.importAndRender
 - `name`: Required. The dashboard name for the saved resume.
 - `slug`: Optional. If provided, it is used exactly and must be unique for the authenticated account. If omitted, the server slugifies `name` and appends a short suffix.
 - `tags`: Optional. Defaults to `[]`. Agents may send values like `["agent"]` or `["agent", "backend"]` for filtering in the dashboard.
-- `data`: Required. A complete Reactive Resume `ResumeData` object.
+- `data`: Required. A complete Reactive Resume `ResumeData` object. This is the same object exported by the web UI as
+  resume JSON.
 
 ## ResumeData requirements
 
-Agents should build `data` from the current schema, not from this doc alone. Sources of truth:
+Agents should build `data` from the current schema and from a high-quality web export example, not from this doc alone.
+Sources of truth:
 
 - Runtime JSON schema: `GET /schema.json`
 - OpenAPI schema: `GET /api/openapi/spec.json`
 - Source schema: `packages/schema/src/resume/data.ts`
 - Default shape example: `packages/schema/src/resume/default.ts`
+- Best practical example: export a polished resume from the web UI and use that JSON structure as the agent target.
 
 Top-level `ResumeData` fields:
 
@@ -76,6 +83,75 @@ Allowed template values:
 "gengar" | "glalie" | "kakuna" | "lapras" | "leafish" |
 "meowth" | "onyx" | "pikachu" | "rhyhorn" | "scizor"
 ```
+
+## ResumeData modeling rules for agents
+
+The API only validates and renders the submitted `ResumeData`; it does not clean up a poor mapping. A payload can be
+schema-valid and still produce a bad PDF if the agent explodes grouped content into too many resume items.
+
+For technical skills, do not send every keyword as its own `skills.items[]` entry. Each item is rendered as a visible block,
+so 30 individual keywords will become 30 lines and can spill into extra pages. Send skill groups instead, and put the
+individual technologies in `keywords` like the web export does:
+
+```json
+{
+  "sections": {
+    "skills": {
+      "title": "Kỹ năng kỹ thuật",
+      "icon": "compass-tool",
+      "columns": 1,
+      "hidden": false,
+      "keepTogether": false,
+      "startOnNewPage": false,
+      "items": [
+        {
+          "id": "skill-backend",
+          "hidden": false,
+          "icon": "",
+          "iconColor": "",
+          "name": "Backend",
+          "proficiency": "",
+          "level": 0,
+          "keywords": [
+            "Python",
+            "Django",
+            "FastAPI",
+            "REST API",
+            "authentication/authorization",
+            "validation",
+            "pagination",
+            "file upload",
+            "logging",
+            "error handling"
+          ]
+        },
+        {
+          "id": "skill-database",
+          "hidden": false,
+          "icon": "",
+          "iconColor": "",
+          "name": "Database",
+          "proficiency": "",
+          "level": 0,
+          "keywords": [
+            "Firestore",
+            "Firebase",
+            "MongoDB",
+            "NoSQL data modeling",
+            "SQL/PostgreSQL",
+            "schema design",
+            "query/index optimization"
+          ]
+        }
+      ]
+    }
+  }
+}
+```
+
+For project stack lines, keep the label and value in one paragraph inside `description`, matching the web export style:
+`<p><strong>Stack:</strong> Python, Django, Firestore</p>`. Do not create one empty `Stack:` paragraph plus another
+paragraph containing the actual stack.
 
 ## Minimal request example
 
@@ -219,3 +295,4 @@ resume ID with the normal authenticated PDF download endpoint.
 - Invalid or incomplete `ResumeData` fails schema validation and no resume is created.
 - Missing or invalid authentication fails with `UNAUTHORIZED`.
 - Created resumes receive a version snapshot labeled `Imported by API` so dashboard history distinguishes API imports from manual edits.
+- Server-side PDF rendering initializes the React classic JSX global in the PDF server adapter so local source-consumed TSX works under `tsx`.
